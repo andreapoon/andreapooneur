@@ -1,25 +1,540 @@
 <!DOCTYPE html>
-<html lang="zh"><head>
+<html lang="zh">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="60">
-<title>爆款雷达 · 还在加载</title>
+<title>ANDREA POON INSURANCE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-       background:#0a0d13;color:#e8e8ea;text-align:center;padding:24px;
-       font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
-  .spin{width:34px;height:34px;margin:0 auto 26px;border:3px solid #2a2f3a;
-        border-top-color:#ff785a;border-radius:50%;animation:s 1s linear infinite}
-  @keyframes s{to{transform:rotate(360deg)}}
-  h1{font-size:23px;margin:0 0 14px;font-weight:600}
-  p{margin:8px 0;color:#9a9aa2;font-size:15px;line-height:1.75}
-  .hint{margin-top:30px;font-size:13.5px;color:#6e6e78}
-  @media(prefers-reduced-motion:reduce){.spin{animation:none}}
-</style></head><body><div>
-  <div class="spin"></div>
-  <h1>你的页面还在加载中,请稍等</h1>
-  <p>第一次大约需要 20-60 分钟。</p>
-  <p>这一页会自己刷新,你可以先去忙别的。</p>
-  <p class="hint">等很久都没变?回到安装 SOP 第 7 步,<br>到仓库的 Actions 看 Sync Content 有没有跑完。</p>
-</div></body></html>
+  :root {
+    --bg: #0a0d13;
+    --card: #11151d;
+    --card-hi: #151a24;
+    --border: #1d2430;
+    --border-hi: #2c3546;
+    --text: #e8ecf3;
+    --muted: #8a94a6;
+    --faint: #5b6577;
+    --accent: #5ea1ff;
+    --green: #3fd68f;
+    --orange: #f0a33f;
+    --pink: #ff6b9d;
+    --red: #ff5c5c;
+    --fire1: #ff8a3d;
+    --fire2: #ff4d6d;
+    --font: 'Inter', -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --disp: 'Space Grotesk', 'Inter', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scrollbar-color: #232c3b var(--bg); }
+  body { background: var(--bg); color: var(--text); font-family: var(--font);
+    -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(94,161,255,.3); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #232c3b; border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2c3546; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+  .ic { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round; fill: none; flex: none; }
+
+  header { position: sticky; top: 0; z-index: 50; background: rgba(10,13,19,.86);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border); padding: 13px 20px 12px; }
+  .hrow { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; max-width: 1440px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+  .mark { width: 31px; height: 31px; border-radius: 9px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--fire1), var(--fire2));
+    box-shadow: 0 4px 16px rgba(255,92,80,.35); }
+  .mark .ic { width: 17px; height: 17px; color: #fff; }
+  h1 { font-family: var(--disp); font-size: 16.5px; font-weight: 700; letter-spacing: .2px; white-space: nowrap; line-height: 1.15; }
+  h1 small { display: block; color: var(--faint); font-family: var(--font); font-weight: 400;
+    font-size: 10.5px; letter-spacing: 0; }
+
+  .search { position: relative; }
+  .search > .ic { position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    color: var(--faint); width: 13.5px; pointer-events: none; }
+  input#fSearch { background: var(--card); color: var(--text); border: 1px solid var(--border);
+    border-radius: 10px; padding: 8px 12px 8px 32px; font-size: 13px; font-family: var(--font);
+    width: 200px; transition: border-color .18s, background .18s; }
+  input#fSearch:hover { border-color: var(--border-hi); }
+  input#fSearch:focus { border-color: var(--accent); outline: none; }
+  input#fSearch::placeholder { color: var(--faint); }
+
+  select, .btn { background: var(--card); color: var(--text); border: 1px solid var(--border);
+    border-radius: 10px; padding: 8px 11px; font-size: 13px; font-family: var(--font);
+    cursor: pointer; transition: border-color .18s, background .18s, color .18s;
+    display: inline-flex; align-items: center; gap: 6px; }
+  select:hover, .btn:hover { border-color: var(--border-hi); background: var(--card-hi); }
+  .btn:active { transform: scale(.97); }
+  .btn.on { border-color: var(--accent); color: var(--accent); background: rgba(94,161,255,.08); }
+
+  .tabs { display: flex; gap: 7px; flex-wrap: wrap; max-width: 1440px; margin: 12px auto 0; }
+  .tab { display: inline-flex; align-items: center; gap: 7px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 999px; padding: 6.5px 14px;
+    font-size: 13px; color: var(--muted); cursor: pointer; user-select: none;
+    transition: border-color .18s, background .18s, color .18s, transform .18s; }
+  .tab:hover { border-color: var(--border-hi); color: var(--text); }
+  .tab .cnt { font-family: var(--disp); font-weight: 600; font-size: 11px;
+    background: rgba(255,255,255,.06); padding: 1.5px 7.5px; border-radius: 99px;
+    font-variant-numeric: tabular-nums; }
+  .tab.on { color: var(--text);
+    background: linear-gradient(135deg, rgba(255,138,61,.15), rgba(255,77,109,.15));
+    border-color: rgba(255,120,90,.45); }
+  .tab.on .cnt { background: rgba(255,120,90,.25); }
+  body.dragging .tab.droppable { border-style: dashed; border-color: var(--accent); }
+  .tab.over { background: rgba(94,161,255,.22); color: var(--text); transform: scale(1.07); }
+
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; max-width: 1440px; margin: 9px auto 0; align-items: center; }
+  .chips .lbl { font-size: 12px; color: var(--faint); margin-right: 2px; }
+  .chip2 { display: inline-flex; align-items: center; gap: 5.5px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 999px; padding: 4.5px 12px;
+    font-size: 12px; color: var(--muted); cursor: pointer; user-select: none;
+    transition: border-color .18s, color .18s, background .18s;
+    font-variant-numeric: tabular-nums; }
+  .chip2 .ic { width: 12.5px; height: 12.5px; }
+  .chip2:hover { border-color: var(--border-hi); color: var(--text); }
+  .chip2.on { border-color: rgba(240,163,63,.6); color: var(--orange); background: rgba(240,163,63,.08); }
+
+  main { max-width: 1440px; margin: 22px auto; padding: 0 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(305px, 1fr)); gap: 18px; }
+
+  .card { position: relative; background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+    transition: transform .22s cubic-bezier(.2,.7,.3,1), border-color .22s, box-shadow .22s;
+    animation: fadeUp .45s cubic-bezier(.2,.7,.3,1) both; }
+  .card:hover { transform: translateY(-3px); border-color: var(--border-hi);
+    box-shadow: 0 12px 32px rgba(0,0,0,.45); }
+  .card.outlier::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--fire1), var(--fire2)); z-index: 2; }
+  .card[draggable] { cursor: grab; }
+  .card.lifting { opacity: .45; }
+  .card.saved { border-color: var(--green); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .embed { position: relative; width: 100%; aspect-ratio: 4/5; background: #080b10; }
+  .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .embed .ph { position: absolute; inset: 0; display: grid; place-items: center;
+    background: linear-gradient(110deg, #0b0e15 8%, #121826 18%, #0b0e15 33%);
+    background-size: 200% 100%; animation: shimmer 1.5s linear infinite; }
+  .embed .ph .ic { width: 30px; height: 30px; color: #2a3342; stroke-width: 1.6; }
+  @keyframes shimmer { to { background-position-x: -200%; } }
+
+  .meta { padding: 13px 15px 14px; display: flex; flex-direction: column; gap: 9px; }
+  .row1 { display: flex; align-items: center; gap: 7px; font-size: 13px; flex-wrap: wrap; }
+  .handle { color: #3a4456; cursor: grab; display: inline-flex; }
+  .handle .ic { width: 13px; height: 13px; }
+  .who { font-weight: 600; color: var(--accent); text-decoration: none; }
+  .who:hover { text-decoration: underline; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; font-weight: 500;
+    padding: 2.5px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+  .badge .ic { width: 10.5px; height: 10.5px; }
+  .badge.bnew { color: var(--pink); border-color: rgba(255,107,157,.45); background: rgba(255,107,157,.07); }
+  .badge.bhorse { color: var(--orange); border-color: rgba(240,163,63,.45); background: rgba(240,163,63,.07); }
+  .badge.bbait { color: var(--accent); border-color: rgba(94,161,255,.4); background: rgba(94,161,255,.07); }
+  .date { margin-left: auto; color: var(--faint); font-size: 11px; font-variant-numeric: tabular-nums; }
+
+  .nums { display: flex; gap: 6px; flex-wrap: wrap; }
+  .num { display: inline-flex; align-items: center; gap: 5px; background: #0c0f16;
+    border: 1px solid var(--border); border-radius: 9px; padding: 5px 9px;
+    font-size: 11px; color: var(--muted); }
+  .num .ic { width: 11.5px; height: 11.5px; }
+  .num b { font-family: var(--disp); color: var(--text); font-size: 12.5px; font-weight: 600;
+    font-variant-numeric: tabular-nums; }
+  .num.hot { border-color: rgba(255,122,77,.35); }
+  .num.hot .ic, .num.hot b { color: #ff7a4d; }
+  .num.x { border-color: rgba(240,163,63,.35); }
+  .num.x .ic, .num.x b { color: var(--orange); }
+  .num.er .ic, .num.er b { color: var(--green); }
+
+  .cap { color: var(--muted); font-size: 12.5px; line-height: 1.55; display: -webkit-box;
+    -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; }
+  .cap.open { -webkit-line-clamp: unset; }
+  .cap b { color: var(--text); font-weight: 600; }
+  .ai { border-left: 2px solid var(--orange); background: rgba(240,163,63,.06);
+    padding: 8px 11px; border-radius: 0 10px 10px 0; font-size: 12px; line-height: 1.65;
+    color: var(--muted); }
+  .ai b { color: var(--orange); font-weight: 600; }
+  .mine { border-left: 2px solid var(--green); background: rgba(63,214,143,.06);
+    padding: 8px 11px; border-radius: 0 10px 10px 0; font-size: 12px; line-height: 1.65;
+    color: var(--muted); cursor: pointer; display: -webkit-box; -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; }
+  .mine.open { -webkit-line-clamp: unset; }
+  .mine b { color: var(--green); font-weight: 600; }
+
+  .srow { display: flex; align-items: center; gap: 7px; }
+  .srow label { font-size: 12px; color: var(--faint); }
+  .status { flex: 1; padding: 6px 9px; font-size: 12.5px; }
+  .status.s未处理 { color: var(--muted); }
+  .status.s拍摄中 { color: var(--orange); border-color: rgba(240,163,63,.5); }
+  .status.s已处理 { color: var(--green); border-color: rgba(63,214,143,.5); }
+  .status.s跳过 { color: var(--red); border-color: rgba(255,92,92,.5); }
+  .abtn { display: inline-flex; align-items: center; gap: 5px; background: #0c0f16;
+    color: var(--muted); border: 1px solid var(--border); border-radius: 9px;
+    padding: 6px 10px; font-size: 11.5px; font-family: var(--font); cursor: pointer;
+    text-decoration: none; transition: color .18s, border-color .18s, transform .1s; }
+  .abtn .ic { width: 12px; height: 12px; }
+  .abtn:hover { color: var(--accent); border-color: rgba(94,161,255,.5); }
+  .abtn:active { transform: scale(.95); }
+
+  .more { text-align: center; margin: 28px 0 44px; }
+  .more button { background: var(--card); color: var(--accent); border: 1px solid var(--border);
+    border-radius: 12px; padding: 11px 30px; font-size: 14px; font-family: var(--font);
+    cursor: pointer; transition: border-color .18s, background .18s; }
+  .more button:hover { border-color: var(--border-hi); background: var(--card-hi); }
+
+  .empty { color: var(--faint); text-align: center; padding: 70px 0; display: flex;
+    flex-direction: column; align-items: center; gap: 12px; font-size: 14px; }
+  .empty .ic { width: 34px; height: 34px; stroke-width: 1.5; color: #2c3546; }
+
+  footer { color: var(--faint); font-size: 11px; text-align: center; padding: 22px; }
+
+  #toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(8px);
+    background: var(--card-hi); border: 1px solid var(--border-hi); border-radius: 11px;
+    padding: 11px 20px; font-size: 13px; display: none; z-index: 99; opacity: 0;
+    box-shadow: 0 12px 32px rgba(0,0,0,.5); transition: opacity .2s, transform .2s; }
+  #toast.show { display: block; opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-msg" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.5l7.1-.6z"/></symbol>
+  <symbol id="i-magnet" viewBox="0 0 24 24"><path d="m6 15-4-4 6.75-6.77a7.79 7.79 0 0 1 11 11L13 22l-4-4 6.39-6.36a2.14 2.14 0 0 0-3-3L6 15"/><path d="m5 8 4 4"/><path d="m12 15 4 4"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6"/><path d="M9 16h6"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><path d="m10 8 6 4-6 4Z"/><rect x="2" y="4" width="20" height="16" rx="3"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol>
+  <symbol id="i-grip" viewBox="0 0 24 24"><circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/></symbol>
+  <symbol id="i-pct" viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></symbol>
+</svg>
+<header>
+  <div class="hrow">
+    <div class="brand">
+      <div class="mark"><svg class="ic"><use href="#i-flame"/></svg></div>
+      <h1>ANDREA POON INSURANCE<small id="updated"></small></h1>
+    </div>
+    <div class="search"><svg class="ic"><use href="#i-search"/></svg>
+      <input id="fSearch" placeholder="搜文案 / hashtag / 账号"></div>
+    <select id="fTracker"><option value="">全部 Tracker</option></select>
+    <select id="fComp"><option value="">全部 Competitor</option></select>
+    <select id="fSort">
+      <option value="x">按 爆款倍数 (vs 自家平均)</option>
+      <option value="score">按 Viral Score</option>
+      <option value="er">按 Engagement Rate</option>
+      <option value="comments">按 Comments</option>
+      <option value="likes">按 Likes</option>
+      <option value="date">按 最新日期</option>
+    </select>
+    <button class="btn" id="fVideo"><svg class="ic"><use href="#i-video"/></svg>只看视频</button>
+
+    <a class="btn" href="team.html" target="_top" title="工作台"><svg class="ic"><use href="#i-users"/></svg>工作台</a>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="chips" id="presets"></div>
+  <div class="chips" id="trends"></div>
+</header>
+<main>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none"><svg class="ic"><use href="#i-search"/></svg>没有符合条件的帖子</div>
+  <div class="more" id="moreWrap" style="display:none"><button id="moreBtn">载入更多</button></div>
+</main>
+<footer>数据来源 Supabase · 每周自动更新 · 状态更改即时同步全团队 · 视频由 Instagram 官方 embed 播放</footer>
+<div id="toast"></div>
+<script id="data" type="application/json">[{"id": "DeylZ-qvuzd", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "今天公司楼下，一只🐱在二楼被困\n\nAbang Bomba 🚒 来了后还和它玩躲猫猫 😂\n\n还好他们一直没有放弃，最后终于平安下来 🐈\n\n有时候，英雄救的不只是人，也是一条小小的生命\n\n感谢 #abangbomba !🫡❤️", "transcript": "", "brk": "Hook类型: 情感共鸣\n结构: 突发事件 → 救援过程 → 升华主题\n为什么火: 借消防员救猫的热点展现温情，引发网民对善良与生命的共鸣\n改编角度: 借消防员救猫的故事切入，强调生命无常与保险对每一个珍贵生命的守护", "my": "最近，有一对 30 多岁的年轻夫妻来找我。\n\n他们刚开始建立自己的家庭，两个人都有稳定的工作和收入。\n\n但他们最担心的一件事是，如果其中一个人发生意外或重大疾病，剩下的那个人和家庭该怎么办。\n\n很多人以为，买保险只要随便买一份，或者等发生事情的时候再来处理就可以了。\n\n其实，如果两个人的保障没有互相配合，家庭的经济还是会受到很大的影响。\n\n买保险就像在照顾一个家庭，需要做好完整的规划，而不是买完就算了。\n\n第一步，可以了解一下你们目前各自有什么 existing policy 。\n\n看看里面的保障够不够应付以后生活上的需要，有没有需要调整的地方。\n\n第二步，把两个人的保障互相配合。\n\n一个人的保障责任比较重的时候，另外一个人可以做适当的调整，让整个家庭有更完整的保护。\n\n第三步，提早做好遗嘱规划。\n\n不管以后发生什么事情，都可以确保资产按照自己的心意分配给最爱的人。\n\n以前他们也是不知道从哪开始，觉得买保险很复杂，也不懂两个人的保障应该怎样配合。\n\n后来通过重新规划，把两个人的保单配合好以后，家庭的保障变得更完整，也安心了很多。\n\n如果你也想知道夫妻之间的保障应该怎样互相配合，可以私信我了解一下。", "tags": "abangbomba", "bait": false, "type": "Video", "likes": 4585, "comments": 59, "er": 107.55, "followers": 4318, "date": "2026-10-22", "url": "https://www.instagram.com/p/DeylZ-qvuzd/", "video": true, "ratio": 0, "score": 110.28, "status": "未处理", "x": 13.6}, {"id": "DewIEY5vVep", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "用了这么多年 Waze，今天第一次背叛它！😂🚗\n\n本人亲身下场体验 TuJu 🫢\n\n🇲🇾 你们会继续用 Waze，还是支持 TuJu？", "transcript": "昨天安華建立我們馬來西亞人民要放棄用Waste改用Dojo所以今天我要支持馬來西亞的AppsMalaysia Ballet我現在我就要用Dojo這個Apps然後我要看一下我能不能回到公司代一下我公司的名字OPALater真的有這個就是我公司的名字今天就從我家這邊去我的公司Let's go他們講這個Apps因為是政府開發的不知道在路上遇到警察的時候這個Apps會不會秀出來可是喔你看我用它的Apps我走了這樣久了我還留在原地我已經加車加到這樣久了我的天啊到底可以不可以走了其實這個Apps它蠻像Google Map這樣子但是我用慣了微笑我會感覺上這個用了有一點怪怪的而且它又不能Connect我的Apple CarPlay然後我要看到那個手機看到這樣子來去走我們終於到了我們的公司不過講真的啦為什麼政府要我們用Dojo而不是用Waze其實安華提出這個建議是有原因的它其實是單性Waze設計到那個用戶的定位資料跟它的Data SecurityWaze現在其實是安的Google但是它最早其實是由你想想看你每一天早上出門我們每天去哪裡幾點出門甚至你要走什麼路線你的Navigation App是知道你要去哪裡的所以我覺得支持Malaysia的Apps是一個好事但是最重要的東西就是它的安全性這個Apps的準確度到底好不好用假如是你們的話你們會換過去用這個Dojo還是會繼續用這個Waze留言告訴我", "brk": "Hook类型: 反常识\n结构: 抛出反常识行为 → 亲测吐槽过程 → 引申数据安全思考\n为什么火: 借时事热点引发本土共鸣，真实吐槽激发互动\n改编角度: 探讨放弃大品牌换本地保险/遗嘱方案，突出数据隐私与本土适配重要性", "my": "最近夫妻两个在看保险的时候，最常问我的就是，买保险到底应该怎么规划。\n\n很多人以为买保险就是随便买一份，只要有保单就可以了。\n\n其实不是，两个人的保障要互相配合，家庭才有完整的保护。\n\n第一点，先看看你们两个目前已经有什么。可以了解一下你是第一次了解保险吗，还是你目前已经有 existing policy 了。把两个人手上的保障放在一起看，才知道哪里有漏洞。\n\n第二点，要考虑到两个人的预算。有些人会觉得买保险很贵，你可以根据你的 budget 去调整的哦。根据你们目前的收入状况，挑出最需要的保障，不用一开始就买到最高。\n\n第三点，要把两个人的未来风险都算进去。如果其中一个人发生意外或重大疾病，剩下的那个人和家庭怎么办。把夫妻两个人的保障做个配合，才不会一个人出事，整个家庭的经济都受到影响。\n\n最近成交的是一对大约 30 多岁的年轻夫妻，丈夫是上班族，太太也有自己的工作，两个人都有稳定收入，刚开始建立自己的家庭。\n\n他们一开始也是不知道两个人应该买多少保险，谁应该承担比较大的保障责任。\n\n后来把两个人的保单放在一起重新规划，互相配合，现在不管哪一个人出事，家庭的经济都有完整的保护。\n\n如果你跟另一半也正在看保险，不知道两个人的保障应该怎么配合。\n\n点击主页链接联系我，我们一起看看你们的家庭保障规划。", "tags": "", "bait": false, "type": "Video", "likes": 4445, "comments": 103, "er": 105.33, "followers": 4318, "date": "2026-10-21", "url": "https://www.instagram.com/p/DewIEY5vVep/", "video": true, "ratio": 0, "score": 110.1, "status": "未处理", "x": 13.6}, {"id": "De5pqvKPvg4", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "感谢 @jeffleong16 送我们看 Dato Lee Chong Wei 的第一个演说\n\n我们看到的是 @leechongweiofficial 站上领奖台的那一刻。🏸\n\n但看不到的，是他背后无数个早晨的自律，以及日复一日的坚持。\n\n今天听完他的分享，我也在反思自己\n\n如果一件事需要坚持10年，才有机会看到成果，你还愿意继续吗？\n\n#jeffleong #brandwarriors", "transcript": "就是要靠努力你要靠原意之力靠你的因此你才能發揮或是套子很勇今天我去聽了納豆里中維的分享我其實聽完過後覺得有一點感觸因為以前我們整天看到的是他的成功的那一面但是你試想一下他待在國家對19年他每一天5點半起來去訓練然後面對比賽的壓力然後還有我們全國人民對他的期待而且我覺得他最厲害的地方而斯坦能夠這麼多年來都堅持著做同一件事情就像他的這個智力那不是普通人能夠輕易做到的其實今天聽到他的分享光偉是在反思我自己我們很多時候做一件事情可能堅持幾個月看不到成績就開始懷疑自己這那些真正厲害的人往往就是在別人看不見的日子裡一直默默的努力如果今天有一件事情需要你堅持10年你現在做的這件事情值得你堅持下去嗎", "brk": "Hook类型: 痛点直击+名人背书\n结构: 引入名人光鲜面 → 揭秘背后19年自律 → 抛出10年坚持的反思质问\n为什么火: 借势国民级体育巨星影响力，将宏大坚持转化为引发普通人共鸣的灵魂拷问\n改编角度: 结合life insurance或recruitment，探讨默默耕耘10年终见成效的长期主义价值", "my": "很多30多岁的年轻夫妻开始建立家庭的时候，都会担心如果一个人发生事情，剩下的那个人和家庭怎么办。\n\n大家总觉得买保险是一件很复杂的事，要花很多钱，还要把现有的全部换掉。\n\n其实不是这样的，真正重要的是让两个人的保障互相配合，让家庭有更完整的保护。\n\n我们可以用三个方法来规划。\n\n第一步，了解你们目前各自的保障。\n\n看看你们已经有什么existing policy，了解清楚哪些够用，哪些还不够。\n\n这样才不会白花钱，还能把钱花在刀口上。\n\n第二步，评估两个人的家庭责任。\n\n算一下如果其中一个人出事，另一方要一个人撑起这个家需要多少支持。\n\n把人寿保险和疾病保障搭配好，让两个人的保障互相配合。\n\n第三步，把未来的风险提早准备好。\n\n不管是人寿保险、疾病保障，还是做一份RM388的遗嘱规划，都是为了保护这个家。\n\n有一次我遇到一对30多岁的年轻夫妻，他们也是刚开始建立家庭，很担心未来的经济会受到影响。\n\n他们原本不知道两个人应该买多少保险，也不知道谁应该承担比较大的保障责任。\n\n后来通过调整，让他们两个人的保障互相配合，家庭有了更完整的保护，他们才真正安心下来。\n\n以前很多夫妻都是等到出事了才来后悔没有早点规划。\n\n现在用对了方法，让两个人的保障互相配合，家庭就有一个真正的后盾。\n\n你可以私信我了解看看，我们可以根据你们目前的情况来规划。", "tags": "jeffleong, brandwarriors", "bait": false, "type": "Video", "likes": 1672, "comments": 26, "er": 39.32, "followers": 4318, "date": "2026-10-25", "url": "https://www.instagram.com/p/De5pqvKPvg4/", "video": true, "ratio": 0, "score": 40.53, "status": "未处理", "x": 5.0}, {"id": "DdwbudTPuai", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "前几天演唱会票抢不到…\n\n但今天我抢到合照了 😂📸", "transcript": "", "brk": "", "my": "", "tags": "", "bait": false, "type": "Image", "likes": 1419, "comments": 6, "er": 33.0, "followers": 4318, "date": "2026-09-26", "url": "https://www.instagram.com/p/DdwbudTPuai/", "video": false, "ratio": 0, "score": 33.28, "status": "未处理", "x": 4.1}, {"id": "DfMeQDKvDCd", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "读了4年大学，毕业却找不到工作？🎓\n\n💬 如果是你，会选择读大学\n\n还是直接出来累积工作经验？", "transcript": "花了幾萬然後用四年的時間讀大學拿到了degree結果畢業過後找不到工作你會不會覺得這四年來都白讀了你知道嗎根據馬來西亞統計局24歲以下的degree holder事業率竟然高達20.58%就差不多每5個人就有1個人事業以前父母常常都這樣要好好讀書拿到degree然後你出去外面的時候就不會這樣難找到工作但是現在真的是這樣嗎而且更現實的是你就算找到工作也不一定代表符合自己學歷的工作同一份報告顯示24歲以下的degree holder有51.38%公司要求他們做的東西是低於他們學歷的工作你想想看一下讀了四年的大學去interview的時候HR還要問你你有沒有工作經驗啊我才剛剛畢業罷了哪裡有工作經驗而且現在時代又有AI以前很多醒人他們都是負責做PPT整理資料甚至是做報告但是現在AI已經代替完他們這些工作了所以我覺得現在的年輕人真的是不能只靠一個degree吧你還要學會會不會溝通你會不會解決那個問題甚至你有沒有學習的能力這些都是越來越重要但是我不是講讀大學沒有用我只是覺得以前我們讀大學是為了找一份好的工作但是現在呢不玩大學這只不過是你入職場的一個voucher吧所以我想問問看你如果你今天又回到18歲你還會堅持讀完你那四年的degree嗎還是你會覺得出來工作拿一些經驗比較重要留言告訴我", "brk": "Hook类型: 痛点直击\n结构: 抛出学历贬值痛点 → 引用惊人数据 → 分析AI时代转变 → 引导观众抉择\n为什么火: 直面当代毕业生求职绝境，用真实数据与AI威胁引发强烈共鸣与焦虑\n改编角度: 探讨买错保险或没做will drafting的代价，结合“现在做准备是否太迟”引发危机感", "my": "花了几年时间读书拿到了学历结果毕业过后不知道要做什么你会不会觉得以前的努力都白费了你知道吗现在很多年轻人出来工作的时候常常会遇到不知道该怎么开始的情况以前长辈常常都这样讲好好打工赚钱然后买个保障以后出去外面的事情就不会这样难照顾但是现在真的是这样吗而且更现实的是你就算有了稳定的工作也不一定代表家里有足够的保障来应对突发的事情很多时候夫妻两个人都要上班如果其中一个人发生事情另一个人的经济压力就会变得很大你想想看一下平时大家都在忙着拼生活但是有没有想过如果真的有一天发生意外家里剩下的人该怎么办我才刚刚踏入社会工作不久哪里有那么多资金去安排这些保障而且现在生活压力很大以前很多人以为只要有普通的储蓄计划就足够了但是现在各种风险已经跟以前不一样了所以我经常跟身边的朋友讲现在真的不能只靠一份普通的保障吧你还要学会怎么帮两个人的保障互相配合你会不会规划未来的家庭甚至有没有做好完整的保障这些都是越来越重要所以我不是讲买保险没有用我只是觉得以前我们买保险只是为了应付一下但是现在呢买保险不只是为了买个安心这只是为了让两个人的保障可以互相配合让家庭有完整的保护吧所以我想问问看你如果是你跟另一半目前有没有开始了解两个人应该买多少保险还是你目前已经有existingpolicy了可以留言告诉我或者直接私信我了解看看", "tags": "", "bait": false, "type": "Video", "likes": 856, "comments": 38, "er": 20.7, "followers": 4318, "date": "2026-11-01", "url": "https://www.instagram.com/p/DfMeQDKvDCd/", "video": true, "ratio": 0, "score": 22.46, "status": "未处理", "x": 2.8}, {"id": "De79FvnCAJD", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "My team went from 45 to 13. After 20 years in this business, I had to start again.\n\nIn 2025 we did about $7M with 23 agents. In 2026 I've recruited 19 advisors, mostly by showing up on social media and refusing to lower the bar, and we're on track for $10M.\n\nMDRT is the floor here. COT and TOT are the push. If that's the team you want, DM me BUILD and let's have a chat.\n\nFull story in my video: How I Lost All My Top Agents… Then Rebuilt With Social Media.\n\n#financialadvisor #MDRT #COT #TOT #insurancecareer #CareyAngGroup", "transcript": "", "brk": "Hook类型: 痛点直击与身份共鸣\n结构: 团队大换血 → 靠自媒体重建 → 目标冲击千万业绩\n为什么火: 坦诚揭露行业残酷现实，用高标准与具体数据建立强大专业信任感。\n改编角度: 聚焦recruitment，分享如何通过自媒体筛选并吸引高素质保险代理人加入。", "my": "很多新人来问我，做保险真的可以赚到理想的收入吗？\n\n他们以为加入保险行业，就要靠到处去求亲戚朋友买单。\n其实不是这样的。\n\n保险就像创业，是没有上限的，取决于你想赚多少。\n想要在这个行业做好，其实有三个方法。\n\n第一，不需要担心自己是小白。\n我们有training，会一步一步guide着你。\n只要你愿意学习，就算没有经验也能慢慢上手。\n\n第二，不用害怕不知道怎么开始。\n你可以先了解一下 existing policy，看看客户目前的情况。\n根据对方的 budget，去调整最适合的保障。\n\n第三，把眼光放远。\n不只是想兼职赚外快，而是愿意付出和学习。\n这样才有机会成长为未来的团队领袖。\n\n以前很多人以为做保险只能靠运气。\n卡在不知道怎么开始，也不知道怎么跟客户沟通。\n用对方法以后，不仅能帮到别人，还能建立自己的事业。\n\n如果你想了解更多，可以私信我。\n我们可以聊聊看，看你适合什么样的发展。", "tags": "financialadvisor, MDRT, COT, TOT, insurancecareer, CareyAngGroup", "bait": false, "type": "Carousel", "likes": 1576, "comments": 54, "er": 16.42, "followers": 9929, "date": "2026-10-26", "url": "https://www.instagram.com/p/De79FvnCAJD/", "video": false, "ratio": 0, "score": 17.5, "status": "未处理", "x": 4.6}, {"id": "DdTKTCgPLng", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "经历妈妈这5年，我才真正明白：\n\n保障的意义，不只是钱\n\n是需要治疗的时候，我们还有选择\n\n现在不求什么，稳定，就好❤️", "transcript": "这五年来,我妈妈最常去的地方之一那就是医院现在每个月我都会陪她回来一次五年前我妈妈被诊断出乳癌那时候做了治疗情况也慢慢稳定下来我们本来都以为最难的那一关都已经过去可是到了第四年癌细胞开始转移到她背后的骨头第四期每个月我们都会回来follow up看医生做检查拿药幸运的是现在她的情况算是平稳所以每一次回来我们最希望听到的就是两个字稳定为了维持现在这个稳定她每个月单单吃的药加上看医生检查这些费用大概就要12000到14000左右一年下来大概在180000左右以前我看到这个数字我可能只会觉得很贵可是这些数字发生在自己妈妈身上的时候感觉真的完全不一样做保险这么多年以前都跟客户讲medicare cut看到的都是coverage limit保障有多少但是发生在自己家人的时候我才发现到保障诊斟给一个家庭的其实不只是钱而是当家人真的生病的时候我们可以先想到什么治疗对她来讲比较好而不是第一句话就问这个我们负得起吗以前可能会觉得每个月来医院follow up很麻烦可是现在我反而希望这样的follow up我还可以陪她来很多很多年因为现在每一次医生都跟我们说情况稳定对我来说已经是一个很好的消息了", "brk": "Hook类型: 痛点直击与情感共鸣\n结构: 母亲患癌复发经历 → 高昂医疗费现实冲击 → 保险重塑选择权的深度反思\n为什么火: 真实惨痛的亲身经历搭配高额医疗费，打破保险冰冷推销印象，击中中年人对疾病与经济崩溃的底层焦虑。\n改编角度: 结合life insurance或medical card，讲述亲历重疾后才懂保单不只是数字，而是给家人免于因钱放弃治疗的底气。", "my": "最近成交的一对 30 多岁的年轻夫妻，他们找我的时候，最担心的一句话就是，如果我其中一个人发生事情，剩下的那个人和家庭怎么办。\n\n很多人觉得，买保险只是为了应付每个月的开销，觉得平常根本用不到。\n\n其实不是这样的，真正遇到事情的时候，保障给一个家庭的不只是钱，而是当家人真的生病的时候，我们可以先想到什么治疗比较好，而不是第一句话就问这个我们负得起吗。\n\n有三个点你可以去注意。\n\n第一点，是要提早去规划两个人的保障。\n\n因为家庭不只是一个人的事情，如果两个人的保障可以互相配合，就可以让家庭有更完整的保护。\n\n这样当意外发生的时候，才不会变成只有一个人的肩膀在扛。\n\n第二点，是要去看清楚现有的保障够不够。\n\n很多人以为有一份保单就够了，却没有去想过，如果发生比较严重的疾病，另一方和家庭的经济会不会受到影响。\n\n这时候去检查一下 existing policy，看看里面的 coverage 是不是足够，是很重要的动作。\n\n第三点，是不要等到事情发生才来后悔。\n\n很多时候我们总觉得时间还很多，可是当风险真的来临的时候，有没有足够的保障，往往决定了我们有没有得选。\n\n就像我最近帮那对年轻夫妻做规划时那样，他们也是刚开始建立自己的家庭，想要把未来的风险都先照顾好。\n\n以前大家可能会觉得，买保险好像只是买一个心安，或者觉得不知道从哪开始。\n\n可是当真正需要面对家庭责任的时候，有做好规划和没有做好规划，出来的结果真的是完全不一样的。\n\n如果你目前也有这样的顾虑，不知道夫妻两个人的保障应该怎样配合，可以私信我了解一下，看怎样帮你们做适合的规划。", "tags": "", "bait": false, "type": "Video", "likes": 402, "comments": 23, "er": 9.84, "followers": 4318, "date": "2026-09-15", "url": "https://www.instagram.com/p/DdTKTCgPLng/", "video": true, "ratio": 0, "score": 10.91, "status": "未处理", "x": 1.3}, {"id": "Dd0j9U-Pxs6", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "新人：RM3,100 😎\n老员工做了20年：RM3,500 🥲\n\n以后云吞面要RM30一碗 了😂\n\n如果最低工资真的提高，\n老员工的薪水是不是也应该一起重新调整？\n\n老板和打工人都来讲讲看👇", "transcript": "最近的新聞最低的性質要調到去3000億可能我們吃一個原土麵可能就要30塊而已後這個就是很多人害怕的囉薪水漲 東西也一起漲20-30年的老員工喔他們本來就拿著3000億一個月的薪水你叫那些人請喝一看這個真的會有問題耶我做了20年你一進來第一天我只是跟你查4800了耶我覺得很不公平啊Exactly喔假如最低薪水它大幅調整的話老闆他面對上面那些3000億3500-4000的員工啊不然做得越久的人反而最不平衡所以我要講這個話題最難的不是3000億到底好不好而是那些新人喔他假如拿3000億那些已經做了5年 10年甚至是20年的老員工啊他們應該要拿多少現在的老闆們應該要好好去獨國算國賢", "brk": "Hook类型: 痛点直击+社会热点\n结构: 抛出最低薪资争议现象 → 点出资深员工心理不平衡痛点 → 引导老板与打工人讨论\n为什么火: 踩中通货膨胀与薪资倒挂的社会痛点，引发打工人与老板强烈的阶层共鸣\n改编角度: 探讨资深员工保单/遗嘱过时危机，或用“新人保险便宜、老员工保费暴涨”切入招募与寿险", "my": "最近成交的一对夫妻啊他们一直在想两个人到底要买多少保险才够。\n\n很多人以为买保险就是一个人随便买一份。\n\n其实不是，两个人的保障必须要互相配合，才能给家庭更完整的保护。\n\n第一步，先检查你手头上的existing policy。看看到底有哪些保障是重叠的，这样才不会浪费钱。\n\n第二步，了解一下你们两个人的budget是多少。根据这个budget 去调整，才不会造成太大的经济压力。\n\n第三步，如果是怀孕的时候，就要注意pre natal plan。因为只有在怀着孕的时候买才有保congenital conditions 先天性疾病，所以不要错失这个机会，只有在13-35weeks 孕期才可以申请。\n\n刚开始建立家庭的时候，夫妻最担心的是如果其中一个人发生事情，剩下的那个人和家庭怎么办。\n\n以前很多夫妻都是各买各的，结果发生状况时保障完全没有配合好，另外一个人还是扛得很辛苦。\n\n用对方法规划之后，不仅两个人的保障可以互相配合，还能让家庭有更完整的保护。\n\n好的。可以了解一下你是第一次了解保险吗？还是你目前已经有existing policy了？", "tags": "", "bait": false, "type": "Video", "likes": 286, "comments": 32, "er": 7.36, "followers": 4318, "date": "2026-09-28", "url": "https://www.instagram.com/p/Dd0j9U-Pxs6/", "video": true, "ratio": 0, "score": 8.85, "status": "未处理", "x": 1.1}, {"id": "Dd3XJYBPkxX", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "有时候我们看到一个人在治疗\n只会觉得：有药吃就好了\n\n但真正经历的人才知道，\n每天都要面对身体不同的不舒服\n\n拉肚子、红疹、痒、骨头痛、抽筋……\n\n辛苦归辛苦，\n她还是选择继续\n\n有些坚持，不是因为不辛苦，\n而是因为还想继续走下去", "transcript": "你吃这个药它有什么晒一分吗肚子不舒服啊拉肚子啊 站都站不稳哦但是你要吃它的止泄的药啊你不吃啊 半夜为了爬起来拉肚子哦你一天可以拉多少吃哦有时候七八吃 只会眼睛干啊会流眼泪啊你的身体养生哪里养的你会这样脚会养起一粒一粒红红的吃那个止养的药吃到颜头头了它就没有这样养哦整个脚会麻痹啊有时候会没有力啊你知道这样多的这个副作用你还要去吃这个药咧吃了就不会痛哦可以吃饭啊 可以睡觉啊可以出街啊讲它吃什么就是什么你不吃就是等时间", "brk": "Hook类型: 痛点直击\n结构: 现实残酷副反应 → 吞药求生细节 → 最终无奈抉择\n为什么火: 用极度真实的治疗副作用细节引发患者与家属强烈共鸣\n改编角度: 强调medical card如何保障患者无需担忧医药费，有尊严地面对治疗副作用", "my": "宝宝生出来才买保险吗\n\n很多人以为\n小孩子出世之后才来安排保单\n其实这样想的话\n会错过很多重要的保障哦\n\n因为只有在怀着孕的时候买 pre natal plan\n才有保 congenital conditions 先天性疾病\n不要错失这个机会\n只有在 13 到 35 weeks 孕期才可以申请\n\n最近刚好成交了一对 30 多岁的年轻夫妻\n丈夫是上班族\n太太也有自己的工作\n刚开始建立自己的家庭\n\n他们找我主要是因为\n想规划未来的家庭保障\n又不确定两个人应该买多少保险\n谁应该承担比较大的保障责任\n如果其中一方发生意外或重大疾病\n另一方和家庭的经济会不会受到影响\n\n他们最关心的问题是\n如果我其中一个人发生事情\n剩下的那个人和家庭怎么办\n\n以前他们觉得\n只要买一份普通的保单就足够了\n后来发现\n不只是想买保险\n而是希望两个人的保障可以互相配合\n让家庭有更完整的保护\n\n如果你也是第一次了解保险\n或者想知道自己的 existing policy 应该怎样调整\n可以私信我了解一下哦。。", "tags": "", "bait": false, "type": "Video", "likes": 263, "comments": 29, "er": 6.76, "followers": 4318, "date": "2026-09-29", "url": "https://www.instagram.com/p/Dd3XJYBPkxX/", "video": true, "ratio": 0, "score": 8.11, "status": "未处理", "x": 1.0}, {"id": "DfN-kl0ChH7", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Your client says, \"I need to ask my wife.\" Here's what I ask back.\n\n3 key takeaways:\n1️⃣ Insurance is for your family, and the beneficiaries are your kids. The decision should reflect that responsibility.\n2️⃣ Out of \"respect\", many people stay uncovered for years because they avoid the difficult conversation.\n3️⃣ Great advisors listen sharply, stay curious and ask why. That's real objection handling.\n\nCaring for your family means making courageous decisions today, even when others don't fully see the value yet.\n\nWant a team that trains you to handle objections? DM me BUILD and let's have a chat.\n\n#FinancialPlanning #FamilyProtection #ObjectionHandling #SalesTips #FinancialAdvisor #CareyAngGroup", "transcript": "", "brk": "Hook类型: 痛点直击\n结构: 抛出客户借口 → 拆解底层逻辑与认知误区 → 号召加入团队\n为什么火: 直面销售中最常见的推脱借口，用家庭责任感重构异议处理。\n改编角度: 针对spouse insurance或life insurance，拍摄如何引导夫妻共同参与家庭保障规划。", "my": "客户跟你说，我要回去问问太太。这时候你会怎么回。\n\n很多人遇到这句话，就会直接让对方回家慢慢考虑。结果过几天发信息，对方就再也不回了。\n\n其实真正的原因不是对方真的要问太太。而是他们不知道两个人的保障应该怎么配合。\n\n给你三个跟夫妻沟通的方法。\n\n第一点，把保障讲成家庭的责任。保险是给家里用的，受益人是孩子。把这个讲清楚，对方就能理解买保险不是为了花钱，而是为了保护家里人。\n\n第二点，不要把逃避沟通当成尊重。很多人为了避免难堪的对话，拖了好几年都没有做保障。你要帮他们把这个顾虑说出来，才能真正帮到他们。\n\n第三点，保持好奇心去听他们真正担心什么。优秀的人会去问清楚他们卡在哪个地方。这就是真正的处理异议。\n\n以前客户说要回去问太太，你就真的让他们回去，最后单子就丢了。用对方法以后，你可以直接帮他们把夫妻两人的保障配合好，让家庭有更完整的保护。\n\n想要了解怎样做夫妻保险规划吗。可以私信我，我们来聊一聊。", "tags": "FinancialPlanning, FamilyProtection, ObjectionHandling, SalesTips, FinancialAdvisor, CareyAngGroup", "bait": false, "type": "Carousel", "likes": 769, "comments": 10, "er": 7.85, "followers": 9929, "date": "2026-11-02", "url": "https://www.instagram.com/p/DfN-kl0ChH7/", "video": false, "ratio": 0, "score": 8.05, "status": "未处理", "x": 2.1}, {"id": "De2zdcHiJV4", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Nobody wakes up wanting to buy insurance. 🛡️\n\nSo why do we do this job? Because it's more than a job, it's a responsibility to protect lives.\n\n1️⃣ Being an agent is a noble profession. Clients trust your words, your advice, and place their hard-earned money in your hands.\n2️⃣ Show the gaps. Even when clients only ask about wealth, it's your duty to highlight critical illness and life coverage gaps.\n3️⃣ Insurance can't wait. Health, insurability and life are unpredictable. Do your part before it's too late.\n\nTrue empowerment is helping your clients protect their future before they ever need to claim it.\n\nAgents, save this and share it with your team. 💪\n\n#FinancialProtection #LifeInsurance #ClientFirst #Empowerment #InsuranceAgent", "transcript": "", "brk": "Hook类型: 痛点直击\n结构: 揭示没人想买保险的真相 → 阐述代理人的三大核心使命 → 号召同行收藏转发\n为什么火: 道出保险代理人职业自豪感与责任感，引发行业共鸣并促成收藏转发\n改编角度: 结合recruitment痛点，讲述“没人想做保险，为什么我们依然吸引优秀人才加入”", "my": "没有人一觉醒来会主动想要买保险。\n\n很多人觉得，做保险代理就是每天推销保单、到处去找客户，只要跟他们聊存钱和理财，就能顺理成章签单。\n\n其实不是，真正的规划不只是聊理财，而是要把两个人的保障互相配合。\n\n第一点，代理是一份责任。客户把辛辛苦苦赚来的钱交给你，不是为了听你讲产品，而是希望家庭有更完整的保护。你可以先了解一下对方是第一次买保险，还是已经有 existing policy 了，再根据他们的 budget 去调整。\n\n第二点，要帮客户找出保障的漏洞。有些夫妻刚建立家庭，虽然有了稳定收入，但常常不确定如果一个人发生意外，另外一个人该怎么办。你要做的是帮他们把保障做好配合，而不是随便塞一份保单给他们。\n\n第三点，保障不能等。健康和未来都是没有办法预测的，不要等到事情发生了才来后悔。你可以跟客户说，保险就像创业一样，是没有上限的，关键是看你想帮家庭建立多大的保护网。\n\n以前很多新加入的小白会担心自己没有经验，不知道该怎么开口跟客户聊保障。\n\n现在我们有完整的 training，会一步一步 guide 着你，不需要自己一个人摸索。\n\n如果你也想加入我们，或者想了解怎样帮家庭做好完整的保障，可以直接私信我。", "tags": "FinancialProtection, LifeInsurance, ClientFirst, Empowerment, InsuranceAgent", "bait": false, "type": "Carousel", "likes": 770, "comments": 2, "er": 7.78, "followers": 9929, "date": "2026-10-24", "url": "https://www.instagram.com/p/De2zdcHiJV4/", "video": false, "ratio": 0, "score": 7.82, "status": "未处理", "x": 2.1}, {"id": "DdsoBcmT3fZ", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "别人中秋吃月饼🥮\n我吃的是未来。🙂\n\n你老板是派月饼，还是画大饼？😂\n@ 一个最常请你吃“大饼”的人", "transcript": "中秋節快樂來拍月餅有月餅送像我的餅你的我特別特別寫給你的好你這個月把月記多好我會給你錢給你一模一樣帶你去走帶你去吃享受好聊的東西讓你開開心心", "brk": "Hook类型: 痛点直击\n结构: 节日送礼切入 → 讽刺老板画大饼 → 抛出金钱奖励诱惑\n为什么火: 利用中秋节点吐槽职场痛点，引发打工人共鸣并@同事互动\n改编角度: 针对recruitment，以老板送月饼不如给真金白银或高薪福利切入吸引求职者", "my": "做保险就像创业，是没有上限的。\n\n你每天上班打卡，看着老板画的大饼，领着固定的薪水，心里其实很不甘心。\n\n你以为做保险要靠运气，或者觉得自己没有经验，一定做不来。\n\n其实不是，只要愿意学习，小白也可以上手。\n\n第一，我们有完整的 training，会一步一步 guide 着你，不需要担心自己不会。\n\n第二，你可以决定自己的时间，不用每天赶着打卡，生活可以很自由。\n\n第三，收入是没有上限的，完全取决于你想赚多少，付出多少就能得到多少回报。\n\n你以前可能觉得做保险很难，每天都在担心没有客源，发展空间受限制。\n\n换成对的方法以后，不仅时间比较自由，还可以建立自己的团队，找到真正的事业方向。\n\n如果你也想了解怎样加入我们，可以私信我，我们聊聊看。", "tags": "", "bait": false, "type": "Video", "likes": 232, "comments": 16, "er": 5.74, "followers": 4318, "date": "2026-09-25", "url": "https://www.instagram.com/p/DdsoBcmT3fZ/", "video": true, "ratio": 0, "score": 6.48, "status": "未处理", "x": 0.8}, {"id": "DfbFcktvRYn", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "结婚很贵，还是婚礼很贵？💍💸\n\nWedding 只有一天，Marriage 才是一辈子的事。❤️\n\n如果你们只有 RM20,000 存款\n\n你会选择先结婚\n\n还是\n\n再存 3 年办一场漂亮的婚礼？🤔", "transcript": "我剛剛見了一堆情侶他們講結婚要用到很多錢其實我之前結婚的時候也是一樣的經歷尤其是酒席我之前擺酒席的時候一座就差不多要2000多塊最近我又剛剛好看到了馬來西亞的一個調查原來有47.28%的未婚受訪者因為經濟的問題他們都還沒有結婚而且調查顯示現在辦一場婚禮營軍最低的開銷都要27000起跳他們一次結婚都差不多用了幾個月的薪水而且你想想看現在結婚要拍婚紗照你要擺酒你還要請親戚朋友呢但是你結婚過後你還要公務公車假如養買孩子又是另外一筆錢所以你這樣算一算不是不想結婚是想結婚但是不敢結年輕人現在真的沒有錢結婚嗎還是我們把結婚這件事保得太貴但是結婚真正的目的是不是為了婚姻有多漂亮還是你要讓兩個人到底有沒有準備好一起過接下來的生活假如你跟你另外一半現在有2萬的存款你會先註冊結婚還是寧願等多三年然後來辦一個漂亮的婚禮會怎樣選永遠去告訴我", "brk": "Hook类型: 痛点直击\n结构: 个人经历引出高额婚礼成本 → 引用大马调查数据暴露年轻人不敢结婚现状 → 抛出2万存款先结婚还是等3年的抉择\n为什么火: 精准踩中大马年轻人结不起婚的现实痛点，引发强烈共鸣与评论区站队讨论\n改编角度: 结合spouse insurance或pre-natal insurance，探讨2万存款面对婚后养娃或家庭保障该如何分配", "my": "刚开始建立家庭的夫妻，最担心的就是两个人的保障到底够不够。\n最近我刚好见到一对 30 多岁的年轻夫妻，他们坐下来就问我，两个人平时都有工作有稳定收入，可是如果其中一个人发生事情，剩下的那个人和家庭怎么办。\n他们不只是想买保险，而是希望两个人的保障可以互相配合，让家庭有更完整的保护。\n很多人以为做家庭保障一定要花很多钱，要把两个人的保单全部换掉，或者要买到最高额度才算安全。\n其实不是这样，真正的问题是大家不确定买多少才够，也不知道两个人的保障应该怎样配合才对。\n这里有三个具体的方法，可以帮你们把两个人的保障做好规划。\n第一步，先看你们目前各自有甚么 existing policy。\n把你们手头上的保单拿出来看一看，了解一下里面到底保了甚么，有没有重复买到一样的保障。\n花一点时间整理清楚，你们就会知道目前还缺甚么，不用白花冤枉钱去买不需要的东西。\n做完这一步，你们心里就会有一个底，知道接下来应该补足哪一个部分。\n第二步，评估两个人的预算。\n坐下来聊一聊每个月可以抽出多少钱来做家庭保障，根据你们的 budget 去调整。\n不要勉强自己去承担太大的经济压力，按步就班来做，保障才能长久。\n调整好之后，你们就不会为了买保险而影响到日常生活开销。\n第三步，把两个人的保障互相配合。\n看一看丈夫和太太两个人之间，谁应该承担比较大的保障责任，然后把两个人的保单结合起来。\n这样当其中一方发生意外或重大疾病的时候，另一方和家庭的经济才不会受到影响。\n做完这三个步骤，你们的家庭就会有更完整、更互相配合的保护。\n最近成交的那对年轻夫妻，他们也是刚开始建立自己的家庭，一开始不知道两个人应该买多少保险，也不知道谁应该承担比较大的保障责任。\n后来我们一起把他们的保单拿出来看，根据他们的 budget 调整，把两个人的保障互相配合好。\n现在他们不用再担心如果其中一个人发生事情，剩下的那个人和家庭该怎么办了。\n如果你现在也是和另外一半刚开始建立家庭，不知道两个人的保障应该怎样配合，或者是不知道应该从哪开始。\n好的。可以了解一下你是第一次了解保险吗？还是你目前已经有 existing policy 了？\n私信我了解更多。", "tags": "", "bait": false, "type": "Video", "likes": 189, "comments": 14, "er": 4.7, "followers": 4318, "date": "2026-11-07", "url": "https://www.instagram.com/p/DfbFcktvRYn/", "video": true, "ratio": 0, "score": 5.35, "status": "未处理", "x": 0.7}, {"id": "DeBzVoSRSpd", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "100天前，我给自己定了一个很小的目标：\n\n每天坚持✊拍一条视频\n\n没有想太多，也没有想过一定要做到什么成绩\n只是告诉自己——先坚持拍，先不要停\n\n从一开始不习惯镜头、一直NG、一直忘词，\n到现在慢慢找到自己的节奏\n\n今天，终于来到第100天。✅\n\n这100天让我学到一个东西：\n\n很多时候不是看到结果才坚持\n而是坚持下去，才慢慢看到结果\n\n第100天不是结束\n接下来还是会继续更新、继续拍视频\n\n只是……\n\n不会再每天了啦 😂😂😂\n\n100天连续更新挑战，正式完成！\n\n接下来，不追求每天出现，\n但会继续认真把内容做好\n\n坚持，真的会看到结果\n\nDay 100/100 ✅\nNext chapter.", "transcript": "最近好像我有一個朋友這段是對啊 重新來過一次今天是我連續拍視頻的第一百天妳是不是在問我囉嗯欸 你去遠一點可以嗎我要靠這邊嗎你應該去遠一點嗎我比較好男啊你看我這幾招我遠一點不是很怪我要這樣過來吧對不起不要這樣這樣你又這樣還沒有給我對白喔我要講什麼啦你可以再重新來過這樣突然間我還沒有搖什麼都還沒有做好啊這樣一搶了沒啊等一下OK 今天我們來挑戰妳的事業和規模都有機會繼續的成長我的事業我的事業規模別搞演員 導演 攝影剪輯不要等自己完全準備好而是開始了才慢慢準備好", "brk": "Hook类型: 身份共鸣/真实记录\n结构: 挑战百天打卡 → 拍摄失误花絮 → 输出行动哲学\n为什么火: 真实展现幕后NG与幽默互动，反差感拉满且金句励志\n改编角度: 拍摄保险招募日常，用幽默NG桥段切入“不要等准备好才开始做代理”", "my": "很多30多岁的夫妻在买保险时，总觉得两个人的保障要分开买才对。\n\n你是不是也觉得，老公买老公的，太太买太太的，各买各的比较简单。\n\n其实不是，夫妻两人的保障应该互相配合，这样家庭才有更完整的保护。\n\n第一步，先看两个人目前的现有保单。好的。可以了解一下你是第一次了解保险吗？还是你目前已经有existing policy了？\n\n把夫妻两个人的保障放在一起看，看看谁承担比较大的保障责任。\n\n这样才知道如果其中一方发生意外或重大疾病，另一方和家庭的经济会不会受到影响。\n\n第二步，了解彼此的预算。可以知道你的budget吗？可以根据你的budget去调整的哦。。\n\n很多人会担心预算不够，或者不知道买多少才够。\n\n其实可以根据家庭的实际情况来分配，不用一次过买到完。\n\n第三步，把两个人的保单做个完整的规划。\n\n让他们可以互相配合，而不是各自买一堆不知道有没有用的保单。\n\n最近成交了一对大约30多岁的年轻夫妻，丈夫是上班族，太太也有自己的工作。\n\n两个人都有稳定收入，刚开始建立家庭。\n\n他们找我主要是因为想规划未来的家庭保障，但又不确定两个人应该买多少保险。\n\n通过互相配合的规划，他们终于不用担心如果其中一个人发生事情，剩下的那个人和家庭怎么办。\n\n以前很多夫妻都是各买各的，结果发生事情时才发现保障不够用。\n\n现在用互相配合的方式，家庭的保护更加完整。\n\n如果你也想了解夫妻的保障应该怎样配合，可以私信我。\n\n了解一下两个人怎样规划比较好。", "tags": "", "bait": false, "type": "Video", "likes": 129, "comments": 33, "er": 3.75, "followers": 4318, "date": "2026-10-03", "url": "https://www.instagram.com/p/DeBzVoSRSpd/", "video": true, "ratio": 0, "score": 5.28, "status": "未处理", "x": 0.7}, {"id": "DfGQRGPCFK9", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Why hearing \"no\" might be the most powerful step towards your next breakthrough.\n\n3 key takeaways:\n1️⃣ \"No\" is normal and expected. Don't take it personally or let it stop you.\n2️⃣ Every \"no\" is the start of understanding. Handle the objection and try again.\n3️⃣ When your intention is to protect someone's future, dare to speak up with honesty and care.\n\nA \"no\" is not your defeat. It's your doorway to better questions and a stronger \"yes.\"\n\nWant a team that trains you to handle the no? DM me BUILD and let's have a chat.\n\n#MindsetShift #PersonalGrowth #CommunicationSkills #SalesTips #FinancialAdvisor #CareyAngGroup", "transcript": "", "brk": "Hook类型: 痛点直击\n结构: 抛出拒绝现状 → 三点拆解转化思维 → 引导私信加入团队\n为什么火: 击中销售群体面对拒绝的心理痛点，提供正向心态赋能与具体的行动指南\n改编角度: 针对recruitment，用“把客户的拒绝当成突破口”吸引渴望提升抗压能力的潜在代理人", "my": "很多新人做保险时最怕听到客户说不要。\n\n你以为是自己不够专业，或者产品不够好。\n\n其实是因为你还没搞懂客户拒绝背后的真正顾虑。\n\n第一步，把拒绝当成正常的事情。客户说不要时，不要放在心上，更不要直接放弃。因为他们只是暂时还没看到家庭保障的必要性，你需要做的是耐心听他们讲完。\n\n第二步，把每一次拒绝当成了解的机会。当客户嫌贵或者说再看看时，不要慌着推销。你可以直接问对方的预算是多少，然后根据他们的经济情况去调整方案，而不是盲目推荐。\n\n第三步，用真诚和关心去沟通。当你的出发点是希望两个人的保障可以互相配合，让家庭有更完整的保护时，就要勇敢把实话讲出来。\n\n我以前带新人的时候，大家遇到客户拒绝就不知道怎么开口。\n\n现在只要按照这些方法去沟通，学会问出他们的实际预算，就能帮客户找到真正合适的保障方案。\n\n如果你也想加入我们，可以私信我了解看看，我们有手把手的培训会带你一步一步上手。", "tags": "MindsetShift, PersonalGrowth, CommunicationSkills, SalesTips, FinancialAdvisor, CareyAngGroup", "bait": false, "type": "Carousel", "likes": 482, "comments": 10, "er": 4.96, "followers": 9929, "date": "2026-10-30", "url": "https://www.instagram.com/p/DfGQRGPCFK9/", "video": false, "ratio": 0, "score": 5.16, "status": "未处理", "x": 1.4}, {"id": "Dfg4rUnPfus", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "同一则新闻，男女反应不一样🫠", "transcript": "哇 怎麼會發生這個事情啊慘了啦鬼票都不知道會不會跌shit唉 又是出軌是不是男子都是這樣子的在看什麼傻男什麼故意喔", "brk": "Hook类型: 身份共鸣\n结构: 新闻场景 → 男女反应对比 → 引发观众对立讨论\n为什么火: 精准捕捉男女思维差异，引发评论区站队互动\n改编角度: 借夫妻保险或配偶保险话题，演绎男女对家庭风险的不同反应", "my": "宝宝生出来才买保险？\n\n很多人以为，小孩子只要一出世，马上就能买好所有的保障。\n\n其实不是，很多妈妈都忽略了，有些重要保障要在怀孕的时候就要开始看。\n\n第一点，把握时间。只有在怀着孕的时候买 pre natal plan 才有保 congenital conditions 先天性疾病。\n\n第二点，注意孕期。只有在 13 到 35 weeks 孕期才可以申请，不要错失这个机会。\n\n第三点，互相配合。不只是看单一的保单，而是让两个人的保障可以互相配合，让家庭有完整的保护。\n\n最近刚帮一对大约 30 多岁的年轻夫妻做规划，他们也是刚开始建立家庭，很担心其中一个人发生事情的时候，另一半和家庭的经济会受到影响。\n\n以前他们不知道怎么开始，觉得买保险很复杂，也不知道两个人应该买多少。\n\n现在他们的保障可以互相配合，夫妻俩都安心很多。\n\n如果你现在也是刚开始建立家庭，不知道怎么规划，可以了解一下你是第一次了解保险吗？还是你目前已经有 existing policy 了？\n\n私信我，我们一起看看怎么帮你的家庭做适合的规划。", "tags": "", "bait": false, "type": "Video", "likes": 124, "comments": 32, "er": 3.61, "followers": 4318, "date": "2026-11-09", "url": "https://www.instagram.com/p/Dfg4rUnPfus/", "video": true, "ratio": 0, "score": 5.09, "status": "未处理", "x": 0.6}, {"id": "DeO6opVvnvM", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "当黑皮哥遇见白皮哥 😂\n\n@tedxpetalingstreet", "transcript": "", "brk": "", "my": "", "tags": "", "bait": false, "type": "Image", "likes": 203, "comments": 4, "er": 4.79, "followers": 4318, "date": "2026-10-08", "url": "https://www.instagram.com/p/DeO6opVvnvM/", "video": false, "ratio": 0, "score": 4.98, "status": "未处理", "x": 0.6}, {"id": "DfWpDcivhW_", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "我对我爸爸的回忆只是一份布丁🍮\n\n家人记住的，不是你有多风光\n\n而是你陪伴过的时光 ✨", "transcript": "我爸爸以前是黑社會老大來了可是你知道嗎我對他最深刻的印象其實就是一個布頂大概在我七八歲左右吧就是那一天的下午他突然間帶我去一個很高級的酒店裡面的restaurant然後就去吃一個布頂我們其實在吃這的時候也沒有特別講很多話那時候其實都沒有什麼前聊為什麼他還帶我去這樣高級的地方吃布頂可能對他來講是想要陪孩子吃東西一般了後來在我十一歲的時候父母就分開一直到我大學的時候才回去找他是很坦白的這樣十多年沒有見過我們都很生疏過在COVID的時候他就離開其實我爸爸以前很威風但是我對他沒有什麼印象但是他帶我去吃布頂的那個時候我就寄要殺之念有時候我就在想我們這一輩子將努力但是在最後整整留在家人的心裡不是因為我們做了什麼大事而是那些看起來很普通可是願意花時間的小事就很像我爸爸帶我去吃一個布頂我可以寄到現在這件事情提醒了我自己有時候不要忙於工作賺錢但是沒有留時間給自己最親近的人留下屬於我們自己的回憶", "brk": "Hook类型: 身份共鸣\n结构: 讲述父子回忆 → 引出核心反思 → 升华陪伴主题\n为什么火: 用极其具象的布丁细节打破常规成功人设，直击现代人缺少陪伴的痛点。\n改编角度: 结合life insurance或spouse insurance，讲述为家人留下的不仅是保单，更是无价的爱与回忆。", "my": "很多三十多岁的夫妻每天拼命加班赚钱。\n\n总觉得只要给家里多赚一点钱。\n\n就是对家庭最好的负责。\n\n其实很多时候家人需要的不是你赚多少钱。\n\n而是希望两个人的保障可以互相配合。\n\n让家庭有更完整的保护。\n\n就像最近遇到的一对大约三十多岁的年轻夫妻。\n\n丈夫是上班族太太也有自己的工作。\n\n两个人都有稳定收入刚开始建立自己的家庭。\n\n他们找我主要是因为想规划未来的家庭保障。\n\n但又不确定两个人应该买多少保险。\n\n谁应该承担比较大的保障责任。\n\n以及如果其中一方发生意外或重大疾病。\n\n另一方和家庭的经济会不会受到影响。\n\n他们最关心的问题是如果我其中一个人发生事情。\n\n剩下的那个人和家庭怎么办。\n\n以前很多年轻夫妻都觉得买保险很复杂。\n\n不知道应该先买人寿保险还是疾病保障。\n\n或者随便买一份保单就算了。\n\n其实真正合适的做法是先了解彼此现有的保障。\n\n看看有没有existing policy。\n\n然后根据两个人的实际情况去互相配合。\n\n这样才能在意外发生时真正支撑起整个家。\n\n如果你目前也正在考虑两个人的家庭保障。\n\n可以了解一下你是第一次了解保险吗。\n\n还是你目前已经有existing policy了。\n\n私信我聊聊你的情况。", "tags": "", "bait": false, "type": "Video", "likes": 159, "comments": 17, "er": 4.08, "followers": 4318, "date": "2026-11-05", "url": "https://www.instagram.com/p/DfWpDcivhW_/", "video": true, "ratio": 0, "score": 4.86, "status": "未处理", "x": 0.6}, {"id": "De-zvHZvkqX", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "adam_lausc", "caption": "以前看到朋友成绩那么好，总觉得自己比别人差\n\n长大后才发现，不是自己不够好，只是还没找到适合自己的方向\n\n成绩不能决定一个人的未来\n\n如果你的孩子考到这样的成绩，你会失望吗？🥹", "transcript": "欸 Adam 我問你啊如果你的孩子討論這樣子的成績你會很失望嗎?哇 這樣的成績啊有一點挑戰喔可能會啦 但是也要看看有沒有其他的才華了嗎?哇 你真的很會安慰人囉當然啦 這個是我的成績答嗎?蛤?你自己的咩?不過講真的啦 你以前會不會因為成績不好覺得自己比別人差喔?喂 其實我以前沒有什麼自信啊我看到有一些朋友的成績是很好我好像什麼都做不到這樣那你後來講主出來的咩?我也不是一天之內就有自信了我是慢慢出來社會 跌跌撰撰悲劇絕 犯錯 再重新學習後來我才發現 有些東西不是你不會只是你還沒有找到適合的方向而已所以保險這份工作有幫到你嗎?有啊 我2013年24歲的時候就加入保險行業喔以前連跟Mos的人講話 我其實都很害怕了其實對我來講最大的收穫就是這13年來 讓我變成是一個有自信有能力幫助別人的人那我再問你一次啦如果你的孩子真的跟你考到一樣成績你會失望嗎?我會對這個成績有點失望啦但是我不會因為這個成績 對我孩子失望我覺得每個人的成長速度都不一樣不會和他講 考不好 用盡我們再努力但是爸爸不會因為這個成績單就覺得你不夠好", "brk": "Hook类型: 身份共鸣\n结构: 抛出成绩差的焦虑话题 → 揭晓是自身经历 → 引出行业成长转变\n为什么火: 用真实成长经历打破学历焦虑，借位走心对话引发华人父母共鸣\n改编角度: 借用孩子成绩不佳或人生低谷话题，切入保险或招聘业务，强调行业重塑自信的价值", "my": "最近看到身边的朋友都有稳定的家庭和完整的保障，总觉得自己好像慢了一步。\n\n其实不只是你一个人这样想，很多刚建立家庭的人都会觉得，两个人在一起生活，到底要怎么分配保障才足够。\n\n有的人以为买保险一定要花很多钱，或者要等到发生事情才知道要买什么。\n\n其实不是这样的，真正重要的是两个人的保障可以互相配合，让家庭有更完整的保护。\n\n很多刚开始建立家庭的夫妻都会问我，如果其中一个人发生事情，剩下的那个人和家庭到底该怎么办。\n\n这其实是很常见的情况，只要把两份保单放在一起看，就能知道谁承担比较多的保障责任。\n\n先了解你们目前已经有的 policy 是什么，看看两个人现有的保障有没有互相配合。\n\n根据你们目前的 budget 去调整，不需要一次过买太多，找到适合你们家庭的节奏最重要。\n\n如果真的不知道从哪开始规划，可以花一点时间坐下来聊一聊，看看两个人的保障怎样才能配合得更好。\n\n以前有些年轻夫妻总是担心预算不够，或者不知道应该买多少保单才对。\n\n用对了方法之后，不仅清楚知道两个人的保障怎么互相配合，也解决了家庭经济会不会受到影响的顾虑。\n\n如果你也想知道两个人的保障应该怎么互相配合，可以私信我了解看看。\n\n好的。可以了解一下你是第一次了解保险吗？还是你目前已经有 existing policy 了？", "tags": "", "bait": false, "type": "Video", "likes": 181, "comments": 9, "er": 4.4, "followers": 4318, "date": "2026-10-27", "url": "https://www.instagram.com/p/De-zvHZvkqX/", "video": true, "ratio": 0, "score": 4.82, "status": "未处理", "x": 0.6}, {"id": "DfBGnNtCkx6", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Are you living on autopilot, or are you training yourself for a bigger life?\n\n3 key takeaways:\n1️⃣ Think bigger. When you aim for higher-value clients and bigger cases, your mindset, standards and actions rise with them.\n2️⃣ Rely on habits, not feelings. Motivation fades. Daily habits and a clear plan are what keep you moving.\n3️⃣ Hope is not a strategy. You don't rise to your expectations, you fall to the level of your training.\n\nBeing average doesn't fail loudly. It fades quietly.\n\nWant to start the climb with a team that trains for COT and above? DM me BUILD and let's have a chat.\n\n#MindsetShift #PersonalGrowth #HighPerformance #SuccessHabits #MDRT #COT #CareyAngGroup", "transcript": "", "brk": "Hook类型: 痛点直击\n结构: 现状反思 → 3大核心执行原则 → 团队招募转化\n为什么火: 用精英思维和残酷现实唤醒同行，高价值干货直击从业者痛点\n改编角度: 针对recruitment，用“平庸悄悄吞噬保险事业”激励绩优代理加入团队", "my": "你在自动驾驶里过日子，还是在为更大的事业做准备？\n\n很多人以为，每天上班下班，日子就这样过下去了。\n觉得平淡也没有什么不好。\n\n其实平庸不是大声失败的。\n它是在不知不觉中，把你的选择和空间越缩越小的。\n\n第一点，把眼光放远。\n当你开始认真规划两个人的家庭保障，而不是只看眼前一个月能省多少钱时，你的标准自然就会提高。\n你可以想一下，如果其中一个人发生意外，另外一个人撑不撑得住。\n这样想过之后，你才会知道两个人应该买多少保险。\n\n第二点，靠习惯，不靠感觉。\n很多人买保险或者做理财，都是凭感觉。\n觉得今天手头松就看一下，明天觉得贵就放着不管。\nmotivation 是会消失的。\n每天有个清晰的计划，知道现有的 policy 够不够用，才不会到了出事的时候手忙脚乱。\n\n第三点，希望不是一种策略。\n你不会因为一直希望生活变好，生活就真的变好。\n你只会掉到你平常准备的水平里。\n很多人觉得保险以后再说，结果真的遇到事情了，才发现保障不够。\n先把基础的保障做起来，家庭才有真正的安全感。\n\n最近遇到一对三十多岁的夫妻。\n丈夫是上班族，太太也有自己的工作。\n他们刚开始建立家庭的时候，也是觉得每天过得去就好。\n直到开始规划两个人的保障，才发现之前的安排根本不够互相配合。\n调整好之后，他们才觉得心里比较踏实。\n\n以前你想着以后有空再了解保险，结果一直拖着没动。\n现在你可以花一点时间，看一下你目前已经有 existing policy 了吗。\n\n可以私信我了解一下，看看你的家庭保障到底够不够。", "tags": "MindsetShift, PersonalGrowth, HighPerformance, SuccessHabits, MDRT, COT, CareyAngGroup", "bait": false, "type": "Carousel", "likes": 408, "comments": 13, "er": 4.24, "followers": 9929, "date": "2026-10-28", "url": "https://www.instagram.com/p/DfBGnNtCkx6/", "video": false, "ratio": 0, "score": 4.5, "status": "未处理", "x": 1.2}, {"id": "DfgAUVdCJ0f", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "I lost 32 agents. Then nobody hit MDRT.\n\nMy team went from 45 to 13, and I went through the motions. No training. No bootcamps. I thought if everyone was comfortable, nobody else would resign. Instead, everyone was lost.\n\nI kept telling myself: wait until the company is more stable. Waiting felt like patience. It was fear.\n\nManagers, be honest: what are you waiting for before you lead again? 👇 I read every one.\n\n#FinancialAdvisor #NewManager #AgencyLeadership #TeamManagement", "transcript": "", "brk": "Hook类型: 痛点直击/反常识\n结构: 坦白惨痛数据 → 反思认知误区 → 抛出灵魂拷问\n为什么火: 撕开管理层遮羞布，用真实崩盘经历引发行业共鸣。\n改编角度: 聚焦recruitment，复盘自己招不到人或新人全军覆没的血泪教训。", "my": "", "tags": "FinancialAdvisor, NewManager, AgencyLeadership, TeamManagement", "bait": false, "type": "Carousel", "likes": 401, "comments": 5, "er": 4.09, "followers": 9929, "date": "2026-11-09", "url": "https://www.instagram.com/p/DfgAUVdCJ0f/", "video": false, "ratio": 0, "score": 4.19, "status": "未处理", "x": 1.1}, {"id": "DfI1Cygjek3", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Client ghosted you? It's normal.\n\n3 key takeaways:\n1️⃣ This career is based on the law of large numbers. Don't call 2 and say \"customer ghost me\". Call 100.\n2️⃣ If customers never ghost you, that's not normal. Rejection is part of the job.\n3️⃣ This is serious business. I look at the numbers every day, and if you need more training, ask for it.\n\nWhen you take your work seriously and own your numbers, your results will start taking you seriously too.\n\nWant a team that takes your growth seriously? DM me BUILD and let's have a chat.\n\n#MindsetShift #SalesTips #PersonalGrowth #FinancialAdvisor #CareyAngGroup", "transcript": "", "brk": "Hook类型: 痛点直击\n结构: 抛出客户失联现象 → 给出3个核心认知 → 号召私信加入团队\n为什么火: 直面销售最痛的被放鸽子问题，用概率论和专业心态重塑信心，精准吸引同行。\n改编角度: 针对recruitment，用“客户已读不回”切入，吸引想转行或寻找靠谱团队的保险代理人。", "my": "刚发了 quotation 客户就已读不回。\n\n你是不是觉得很沮丧、很挫折。\n\n觉得是不是自己哪里讲错了。\n\n其实这很正常。\n\n第一点。\n\n保险就像创业。\n\n它是靠概率来决定的。\n\n不要只联系两个人。\n\n就跑来跟我说客户不回复。\n\n要去联系更多人。\n\n第二点。\n\n如果客户从来没有已读不回过。\n\n那才是不正常的。\n\n被拒绝本来就是工作的一部分。\n\n不需要太放在心上。\n\n第三点。\n\n这是一份严肃的事业。\n\n我每天都在看这些数字。\n\n如果你觉得不够熟练。\n\n随时可以来找我。\n\n我们有 training。\n\n会一步一步 guide 着你。\n\n小白也可以上手。\n\n不需要担心。\n\n以前客户不回复的时候。\n\n你可能会自己一个人闷着想。\n\n不知道该怎么办。\n\n也不知道是不是自己不适合这一行。\n\n现在你懂得了调整心态。\n\n把这当作创业来看待。\n\n遇到问题就来找团队帮忙。\n\n发展就会变得不一样。\n\n想要了解怎么加入我们的团队吗。\n\n私信我。\n\n我们聊聊。", "tags": "MindsetShift, SalesTips, PersonalGrowth, FinancialAdvisor, CareyAngGroup", "bait": false, "type": "Carousel", "likes": 367, "comments": 8, "er": 3.78, "followers": 9929, "date": "2026-10-31", "url": "https://www.instagram.com/p/DfI1Cygjek3/", "video": false, "ratio": 0, "score": 3.94, "status": "未处理", "x": 1.0}, {"id": "DfLZrp1iCDW", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Why do so many agents never reach MDRT? It's rarely about skill. It's about urgency, standards and how seriously you take your own success.\n\n3 key takeaways:\n1️⃣ Most people blame a lack of training. The real issue is a lack of urgency.\n2️⃣ MDRT and TOT aren't \"just titles\". They reflect your work ethic and how seriously you treat your craft.\n3️⃣ When you operate at the top of your game, clients feel safer with you. They know they're in good hands.\n\nYour results reflect the standards and urgency you choose to live by.\n\nWant a team where MDRT is the floor? DM me BUILD and let's have a chat.\n\n#SuccessMindset #HighPerformance #MDRT #TOT #FinancialAdvisor #CareyAngGroup", "transcript": "", "brk": "Hook类型: 痛点直击\n结构: 提出行业现象 → 给出3个核心观点 → 呼吁私信加入团队\n为什么火: 直击同行痛点，用MDRT激发企图心，精准筛选高潜人才\n改编角度: 针对recruitment，用“为什么你还没达到MDRT”激励新人加入我们的高标准团队", "my": "很多新人加入保险行业以后,常常会觉得是不是自己不够努力才赚不到理想的收入。\n\n大多数人以为是自己没有经验或者没有好的培训。\n\n其实真正的关键不是在能力上面,而是你对待这份事业的企图心和标准。\n\n第一,不要觉得小白就做不好。\n我们有完整的 training,会一步一步 guide 着你。\n只要你愿意学习,新手也可以上手,不需要担心。\n\n第二,保险就像创业,是没有上限的。\n你可以决定你想赚多少,收入取决于你的付出。\n只要你愿意投入时间,发展空间其实是很大的。\n\n第三,当你开始认真对待这份事业时,客户其实是感受得到的。\n他们会觉得把保障交给你很放心,因为你是在认真帮他们规划家庭。\n\n以前很多人会问,没有经验到底能不能加入。\n其实只要你愿意跨出第一步,后面的路我们可以一起走。\n\n如果你也想了解看看,可以私信我,我们聊一聊。", "tags": "SuccessMindset, HighPerformance, MDRT, TOT, FinancialAdvisor, CareyAngGroup", "bait": false, "type": "Carousel", "likes": 341, "comments": 12, "er": 3.56, "followers": 9929, "date": "2026-11-01", "url": "https://www.instagram.com/p/DfLZrp1iCDW/", "video": false, "ratio": 0, "score": 3.8, "status": "未处理", "x": 1.0}, {"id": "DfdbasDDf4Y", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "I was the top in the company. And my people did not like me.\n\nThey held meetings without me. Some of my best producers left on bad terms. I kept thinking: I made you productive, so why?\n\nIt took me years to learn: people don't leave results. They leave how you made them feel.\n\nHave you ever lost an advisor you made successful? Tell me what really made them leave 👇 I read every one.\n\n#FinancialAdvisor #NewManager #AgencyLeadership #TeamManagement", "transcript": "", "brk": "Hook类型: 身份共鸣\n结构: 高光业绩 → 团队背叛 → 觉醒反思 → 抛出互动\n为什么火: 戳中管理者自以为是的盲点，用真实职场痛点引发强烈共鸣\n改编角度: 招募(recruitment)场景：从“我做过销冠”切入，讲如何学会成就伙伴而非压榨业绩", "my": "以前带新人冲业绩的时候。\n\n我以为只要业绩好。\n\n团队就会一直跟着我。\n\n但我发现。\n\n他们开会开始不叫我。\n\n甚至有很好的伙伴。\n\n最后闹得不开心离开。\n\n我一直想不明白。\n\n我帮他们赚到钱了。\n\n为什么还要走。\n\n后来我才慢慢明白。\n\n伙伴离开。\n\n其实不是因为钱不够多。\n\n而是因为带他们的方法不对。\n\n第一。\n\n不要只盯着数字。\n\n很多新人刚加入的时候。\n\n连基础的保障概念都不懂。\n\n如果你一上来只追着要单量。\n\n他们会觉得很有压力。\n\n第二。\n\n要带他们一步一步走。\n\n比如我们带小白的时候。\n\n有完整的training。\n\n会手把手guide着他们。\n\n让他们知道怎么面对客户。\n\n而不是放着不管。\n\n第三。\n\n要看懂他们的顾虑。\n\n当他们遇到挫折想放弃的时候。\n\n多问一句最近情况怎样。\n\n听听他们卡在哪里。\n\n帮他们把问题解决掉。\n\n以前带人的时候。\n\n只顾着看业绩。\n\n结果伙伴觉得很有压力。\n\n现在带人的时候。\n\n先看他们需要什么帮助。\n\n再一起把事业做起来。\n\n如果你也想了解。\n\n没有经验能不能加入我们。\n\n可以直接私信我。\n\n了解具体的培训安排。", "tags": "FinancialAdvisor, NewManager, AgencyLeadership, TeamManagement", "bait": false, "type": "Carousel", "likes": 294, "comments": 3, "er": 2.99, "followers": 9929, "date": "2026-11-08", "url": "https://www.instagram.com/p/DfdbasDDf4Y/", "video": false, "ratio": 0, "score": 3.05, "status": "未处理", "x": 0.8}, {"id": "De_tsnmgPZd", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Are you using “flexibility” as an excuse… or as a weapon to change your life?\n\n3 Key Takeaway!\n1️⃣ Flexibility is dangerous if you can’t manage it—either you control your time, or your time controls you. \n2️⃣ Being your own boss means you should work more, not less; success demands consistent, focused hours. \n3️⃣ This business is tougher than a 9–5, so expecting big results from minimal effort is unrealistic.\n\nQuote of the day: If you want a life of freedom, first master the discipline that freedom requires.\n\n#entrepreneurship #mindset #selfdiscipline #personaldevelopment", "transcript": "Jangan datang ke sini untuk menjadi lebih sempurna. Untuk mempunyai kerja mudah. Jangan datang ke sini untuk membuat duit. Kamu berdua menengah kerana ia lebih sempurna. Itu sangat bahagian. Jika kamu bekerja untuk orang lain, kamu bekerja selama 44 jam. Tetapi ketika kamu bekerja untuk diri, berapa banyak jam kamu bekerja selama sejam? Kamu bekerja 3 jam saja! Bekerja 3 jam untuk menjaga duit. Itu perkara yang benar, kerana banyak orang mengenai perniagaan fikir ia lebih sempurna. Saya ingin mempunyai sempurna. Saya mengenai kerana ia lebih sempurna. Tetapi jika kamu tidak boleh mengenai kemahiran, kemahiran akan mengenai kamu. Sebagai penjara yang mudah, kamu perlu mempunyai sebuah kabel. Kamu tidak boleh menjadi... Saya menangis. Saya rasa saya perlu pergi ke pejabat. Teman saya telefon saya dan makan. Okey, mari kita pergi makan. Saya tidak bekerja. Saya tidak berpunyai sepuluh jam. Selepas itu, kamu bekerja selama 10 minit. Apa itu? Penjara saya? Beri nombor telefon dia. Jangan bercakap dengan dia. Kerana tidak perlu bercakap. Jangan bercakap. Jangan bercakap. Jangan bercakap. Jadi kamu lihat, sebuah orang muda yang muda, atau kadang-kadang kita tidak dapat mengenai kemahiran. Kita tidak tahu kerana jika kita berada di tempat yang terkenal, setiap hari saya pergi ke pejabat, tiba-tiba, tidak mudah dan mudah. Saya tidak dapat mengenai masa. Saya tidak tahu. Jadi saya pergi ke pejabat atau gembira. Mungkin saya menunggu saya pergi ke pejabat. Tetapi apa yang kamu lakukan? Telefon! Kamu boleh bermain di rumah. Jadi kamu perlu bekerja minimal selama 48 jam. Tetapi di average, kita bekerja lebih atau lebih daripada 40 jam? Bukan. Jadi pertanyaan saya akan selalu beritahu kemahiran itu, kamu bekerja untuk diri sendiri. Sebenarnya kamu bekerja lebih daripada, tetapi kenapa saya tidak akan beri lebih banyak? Sangat mudah. Tidak ada yang terlalu berkembang. Pembuah tidak memperkenalkan. Ini adalah perniagaan saya sendiri. Saya tidak datang ke sini untuk diperlihatkan. Itu adalah yang terkenal. Tetapi jika kamu tidak menunggu sepanjang jam, kamu tidak dapat mengetahui kemahiran. Kerana kerja ini lebih mudah atau lebih susah daripada kerja yang lebih susah, bukan? Jadi jika saya menunggu lebih susah, patut saya menunggu lebih banyak jam atau lebih kurang jam. Lebih kurang jam. Tetapi ia adalah perubahan dalam perniagaan ini. Kita selalu menunggu lebih kurang jam, tetapi kita menunggu lebih banyak jam. Ini sangat berkembang. Dan ia adalah semua orang berfikir apabila mereka datang ke sini.", "brk": "Hook类型: 痛点直击\n结构: 打破幻想 → 对比工时 → 揭示真相\n为什么火: 直言创业真相，戳中想转行却怕吃苦的人\n改编角度: 针对recruitment，直击求职者想找轻松工作却想赚大钱的幻想。", "my": "你是不是以为做保险时间很自由。\n每天睡到自然醒就可以赚到钱。\n其实这是很多新人最大的误区。\n大家以为时间自由就是不用做什么事情。\n实际上做保险就像创业。\n如果你没有自律能力。\n时间反而会把你控制住。\n第一。\n你要明白这行比打工还要难。\n不要以为花一点点时间就能拿到很好的收入。\n我们要面对各种客户的问题。\n还要不断学习新的保障知识。\n第二。\n你要懂得时间管理。\n把每天的时间分成几个部分。\n一部分用来找客户。\n一部分用来跟进消息。\n还有一部分用来提升自己。\n第三。\n你要有长期经营的心态。\n就像我最近成交的那对三十多岁的年轻夫妻。\n他们也是考虑了很久。\n才把两个人的保障互相配合好。\n以前很多新人刚进来时。\n觉得只要发发朋友圈就会有人买。\n结果发现根本不是这样。\n后来大家学会了每天主动去联系客户。\n认真回答他们的每一个顾虑。\n业绩才慢慢稳定下来。\n如果你也想在23到35岁这段时间突破自己。\n想要有更大的发展空间。\n现在就私信我了解更多团队招募的事情。", "tags": "entrepreneurship, mindset, selfdiscipline, personaldevelopment", "bait": false, "type": "Video", "likes": 214, "comments": 2, "er": 2.18, "followers": 9929, "date": "2026-10-27", "url": "https://www.instagram.com/p/De_tsnmgPZd/", "video": true, "ratio": 0, "score": 2.22, "status": "未处理", "x": 0.6}, {"id": "Dfnu3dTCPY-", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "@shutiao_nana joined to buy a Dior bag. I took it seriously.\n\nWhen Anna joined me 13 years ago, I asked her why. \"I want to buy a Dior bag.\" Why that bag? \"Because it makes me seen.\"\n\nIt wasn't about the bag. It was about being seen. For years she was a consistent MDRT. Two years ago I challenged her, and in 2025 she hit her first-ever COT.\n\nPeople don't need you to fix them. They need to know you're with them on the journey.\n\nManagers: what's the real reason one of your advisors joined? The one that surprised you. 👇 I read every one.\n\n#FinancialAdvisor #NewManager #AgencyLeadership #TeamManagement", "transcript": "", "brk": "Hook类型: 身份共鸣\n结构: 表面动机(买包) → 深度洞察(渴望被看见) → 结果转化(达成COT)\n为什么火: 用物质愿望切入，揭示人性深层渴望，展现领导者的同理心与赋能。\n改编角度: 招募(recruitment):分享新人加入为了买奢侈品，通过保险事业实现自我价值的真实故事。", "my": "新人进团队第一天说想买个包，你会认真对待吗。。\n\n很多人觉得带新人要讲很多大道理，要教他们怎么谈单，要帮他们规划好每一步。\n\n其实不是，有时候他们想得很简单，只是想要改变生活，或者想要更大的收入潜力。\n\n可以了解一下你是第一次了解保险吗，还是你目前已经有 existing policy 了。。\n\n第一步，先带他们看清楚自己的现状，了解他们真正想要的是什么。\n\n保险就像创业，是没有上限的，关键是看你想赚多少。\n\n第二步，从基础开始 training，我们有一步一步 guide 着你，小白也可以上手，不需要担心。\n\n第三步，给他们空间去发展，不是在后面盯着他们，而是陪着他们一起走。\n\n最近我们团队刚好有新人进来，他们经常会问，我没有保险经验，可以加入吗。\n\n以前觉得带人一定要有很厉害的背景，要懂很多专业知识，卡在不知道怎么帮新人跨出第一步。\n\n换了方法以后，带着他们一步步熟悉，看着他们慢慢上手，找到自己的节奏。\n\n想了解怎么开始的话，可以私信我聊聊你的想法。。", "tags": "FinancialAdvisor, NewManager, AgencyLeadership, TeamManagement", "bait": false, "type": "Carousel", "likes": 192, "comments": 4, "er": 1.97, "followers": 9929, "date": "2026-11-12", "url": "https://www.instagram.com/p/Dfnu3dTCPY-/", "video": false, "ratio": 0, "score": 2.05, "status": "未处理", "x": 0.5}, {"id": "DfCSHTQgVVs", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Are you still planting seeds, or just waiting for a harvest?\n\n3 Key Takeaway!\n1️⃣ Prospecting is your lifeblood—never stop, even when you’re busy or already successful. \n2️⃣ Senior advisors must still dedicate at least half their time to prospecting; when you stop planting, you stop harvesting. \n3️⃣ To earn referrals, become highly “referable” by serving clients well, adding real value, and consistently nurturing relationships.\n\nQuote of the day: The moment you stop planting seeds is the moment you choose to stop growing.\n\n#growthmindset #prospecting #personaldevelopment #successhabits", "transcript": "Jadi tak pernah berhenti menjaga, saya rasa itu juga penting. Jika anda ingin berada di mana dalam keadaan terakhir, anda perlu sentiasa tahu bahawa menjaga itu adalah hidup anda. Yang teruk adalah, banyak perjalanan membuatnya adalah kami berhenti menjaga apabila kami menjadi sangat sibuk. Jadi, sebuah baik perjalanan adalah sebagai agen baru, tentu saja, kami tahu 90% masa dan berhenti. 80% masa dan berhenti. Tetapi banyak perjalanan senior, mereka juga berhenti berhenti kerana mereka rasa bahawa saya akan berada di sini dan saya akan berhenti untuk kesan. Jadi itu apabila kesan berlalu kecil, kerana anda tahu berhenti, berhenti, berhenti. Jadi, apabila anda sebagai perjalanan senior, anda perlu sentiasa bekerja di atas perjalanan. Sentiasa bekerja di atas perjalanan. Jadi, mungkin saya akan berkata, perjalanan senior anda perlu masih berhenti sekitar 60% atau 50% masa berhenti. Jika anda berhenti menjaga, akhirnya, tidak ada apa-apa untuk berhenti. Dan itu adalah apabila anda akan rasa bahawa semua perkara tidak bergerak. Bagaimana saya tidak ada keadaan, saya tidak ada kesan? Kerana anda berhenti menjaga keadaan anda. Jadi, jika anda berhenti menjaga, bagaimana anda dapat kesan? Jadi, apabila penjagaan ialah baik atau apabila anda telah meluat untuk tahun yang penting, anda perlu teruskan berlaku. Bukan teruskan melakukan media sosial anda. Anda perlu teruskan berlaku untuk mendapatkan penjagaan anda, mendapatkan keusahiran anda untuk memberi menawarkan. Jadi, mana boleh mencari lebih banyak prospekt? Jadi, anda dapatkan keusahiran para di per aí. Sebelum anda dapatkan keusahiran para di per aí, saya rasa anda juga perlu bekerja di keusahiran. Anda berlaku dengan baik untuk perangai untuk menyediakan anda? Saya juga juga. Anda masih perlu melakukan kepada anda, Bila anda beruntung atau tidak, jika anda mahu mempunyai produk, anda masih perlu melakukan. Saya rasa ia masih berkumpulan. Jadi saya selalu akan menghormati kelebihan. Jika anda tidak mahu mempunyai, anda perlu pastikan anda mempunyai cara lain untuk menjadikan proses. Untuk contoh, anda selalu menjadikan perjalanan untuk referral, anda mempunyai event, anda mempunyai... Kerana perjalanan servis yang sangat bagus. Selain itu, anda selalu dapat pembezaan. Sebenarnya anda harus berjaya di tempat pertama. Jika anda tidak berjaya, siapa akan menyebabkan pembezaan anda? Saya rasa itu juga penting.", "brk": "Hook类型: 痛点直击\n结构: 揭露资深同行通病 → 强调持续开发核心地位 → 给出行业破局与转介绍方法\n为什么火: 直击销售业绩停滞根源，引发业内共鸣与反思\n改编角度: 结合recruitment业务，揭秘资深保险代理人业绩下滑原因并吸引新人加入团队", "my": "做保险做到很忙的时候，你是不是也停下来不找新客户了？\n\n很多人以为，只要前面基础打好了，后面客户就会自己找上门来。\n\n其实根本不是这样，不管是新人还是做到资深的，只要一停下来，业绩马上就卡住。\n\n第一点，找客户是每天都要做的事，千万不要因为忙就停下来。\n\n不管是刚开始做，还是已经有点成绩了，每天都要留出时间去接触新客户。\n\n如果把时间全部排在处理旧保单上，新的机会就会慢慢变少。\n\n第二点，做到资深了，也绝对不能停下脚步。\n\n很多人以为资深顾问就可以不用开发新客户了，其实还是要花一半的时间去拓客。\n\n因为如果你停止了播种，后面就不会有新的收获，团队和收入也会跟着停滞。\n\n第三点，想要有源源不断的人介绍客户，你必须先把服务做到极致。\n\n只有真正把客户的保障规划好，对方才会愿意把身边的人介绍给你。\n\n平时多关心客户的需求，把每一个细节都做好，自然就会有源源不断的新机会。\n\n最近成交了一对三十多岁的年轻夫妻，他们刚开始也是不知道该怎么规划两个人的保障。\n\n他们最担心的是，如果其中一个人发生事情，另一个人的生活和家庭该怎么办。\n\n我们坐下来把他们的保单仔细对过一遍，帮他们把两个人的保障互相配合好。\n\n弄清楚各自需要承担多少责任之后，他们才真正放心下来，觉得家庭有了完整的保护。\n\n以前觉得只要服务好手头这几个客户就够了，遇到瓶颈也不知道该怎么突破。\n\n现在每天固定花时间去接触新客户，同时把每一份保单都做到位，心里反而踏实很多。\n\n如果你也想了解怎样帮自己和家庭做好完整的保障，可以直接私信我。", "tags": "growthmindset, prospecting, personaldevelopment, successhabits", "bait": false, "type": "Video", "likes": 188, "comments": 1, "er": 1.9, "followers": 9929, "date": "2026-10-28", "url": "https://www.instagram.com/p/DfCSHTQgVVs/", "video": true, "ratio": 0, "score": 1.92, "status": "未处理", "x": 0.5}, {"id": "DeoiKDvgdOx", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Are you living by your true worth—or letting your environment decide your value?\n\n3 Key Takeaway!\n1️⃣ Your value doesn’t change—your environment does. Just like a can of Coke, the same “you” is valued differently depending on where you place yourself. \n2️⃣ You are in the best position when you decide your own worth. Income is not limited by qualifications or years of experience, but by how high you set your goals and how hard you’re willing to work. \n3️⃣ Clarity of goals creates breakthroughs. Setting a bold target (like earning your first million) and staying disciplined over years can transform your value and multiply your results.\n\nQuote of the day: You are priceless, but your results will always reflect the standard you set for yourself.\n\n#selfgrowth #mindset #success #personaldevelopment", "transcript": "Jadi sesiapa yang di sini suka memasakkan koc? Jadi hari ini, kamu pergi ke kedai Mama dan beli koc. Berapa banyak koc koc koc? 3 koc. Kemudian kamu mungkin pergi ke KLCC. Sangat teruk, sangat keren. Kamu mempunyai untuk beli koc koc. Berapa banyak koc koc koc? 6 koc. Mungkin kamu di hotel yang sangat teruk. Di malam, kamu memasakkan koc koc. Tetapi mereka mencabar dalam koc. Dengan lembut. Berapa banyak koc koc koc? 12 koc. Tetapi kamu masih beri koc. Tetapi kamu masih sama koc koc. Tetapi kenapa perbezaan di tempat yang berbeda? Yang adalah perubahan. Kita di perubahan terbaik. Kita di tempat terbaik. Kenapa? Kerana perubahan kita tidak dipercaya oleh keputusan kita. Perubahan kita tidak dipercaya oleh pelanggan yang berlaku dari pengalaman kita. Perubahan kita dipercaya oleh diri kita. Jadi saya selalu berkongsi pada adik saya. Kamu dalam kerja terbaik. Kamu ada kerja terbaik. Kamu memutuskan kerja sendiri. Apa koc koc? Jadi berapa banyak koc koc? Jangan tahu. Jangan memasakkan koc koc. Priceless. Jadi jika itu kes, bagaimana kamu berjaya menerima koc koc? Apakah itu priceless? Apakah itu priceless kepada kamu? Apabila saya 21 tahun, sebelum saya bergabung dengan perubahan, bos saya minta, apa koc koc kamu? Set koc? Jadi saya ingat saya ada koc koc ini. Saya perlu koc koc. Jadi saya berkongsi, saya mahu belajar 1 juta dolar. Tetapi apabila saya berkongsi, tidak dalam perubahan, saya tidak tahu bagaimana koc koc. Saya juga tidak tahu apa yang berlaku untuk belajar 1 juta dolar. Saya hanya beritahu, saya mahu belajar 1 juta dolar. Ia menerima saya 10 tahun untuk menerima koc koc. Ia tidak mudah, tetapi kami tidak perlu tahu segalanya untuk menerima koc. Kamu berjalan selama sepanjang masa. Jadi, kamu perlu tahu kerja kamu. Kerana apabila saya tahu saya mahu belajar 1 juta dolar, boleh saya hanya membuat koc koc? Boleh. Saya perlu membuat 100 dolar sepanjang hari kerana ia susah untuk membuat 1 juta dolar. Jadi saya mulakan bekerja sangat susah. Untuk koc koc koc, saya tidak membuat koc koc. Saya tidak membuat koc koc daripada kembali-kembali. Kerana saya tahu saya perlu bekerja untuk menerima koc koc. Kerana saya sangat jelas, saya sangat membuat koc koc. Jadi, saya dapat menerima koc. Sebab itu, kamu perlu tahu koc koc. Kamu perlu membuat koc koc. Apabila saya menerima koc koc, saya membuat koc koc. Kemudian saya menerima koc koc. 1 tahun, koc koc koc koc. Dan itu sebabnya, saya tidak menggantikan kembali koc koc.", "brk": "Hook类型: 身份共鸣\n结构: 场景类比(可乐定价) → 个人经历(21岁定下百万目标) → 行动复盘(长期坚持达成结果)\n为什么火: 用生活常识(同款可乐在不同地方售价不同)巧妙类比个人价值，极具启发性\n改编角度: 借用“可乐在不同地方价值不同”的比喻，直击薪资瓶颈，切入recruitment招募有志青年", "my": "你有没有想过，为什么你每天很努力上班，收入还是卡在同一个地方。\n很多人以为，是自己不够优秀，或者学历不够高。\n其实不是，真正卡住你的，是你的环境。\n第一，你要看清楚自己现在的收入空间。\n很多人每天做着一样的工作，领着固定的薪水，觉得生活就是这样。\n其实你可以选择一个有更大发展空间的地方。\n就像很多人问我，没有经验可以加入吗。\n可以的，我们有training，会一步一步guide着你。\n小白也可以上手，不需要担心。\n第二，保险就像创业，是没有上限的。\n取决于你想赚多少，生活是可以自己决定的。\n不用担心自己一开始什么都不会。\n只要你愿意学习，愿意付出，就会有不一样的结果。\n第三，找到一个可以长期发展的事业。\n我们不只是在卖保险，而是在帮客户做长远的保障。\n当你把眼光放远，你的心态就会改变。\n就像我最近遇到的一些年轻人，他们一开始也很迷茫。\n不知道自己能不能做到，不知道能不能赚到理想的收入。\n以前每天都在担心工作不稳定，收入没有突破。\n现在他们学会了规划，也找到了自己的方向。\n如果你也想寻找新的事业发展机会，想知道自己能走多远。\n点击主页链接联系我，我们聊聊看。", "tags": "selfgrowth, mindset, success, personaldevelopment", "bait": false, "type": "Video", "likes": 180, "comments": 2, "er": 1.83, "followers": 9929, "date": "2026-10-18", "url": "https://www.instagram.com/p/DeoiKDvgdOx/", "video": true, "ratio": 0, "score": 1.87, "status": "未处理", "x": 0.5}, {"id": "DfE27V6AsaR", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Are you hungry enough to chase the life you say you want?\n\n3 Key Takeaways!\n1️⃣ Success doesn’t start with talent or skills—it starts with a burning desire that keeps you going when things get tough. \n2️⃣ Your background doesn’t define your hunger; both privileged and less privileged people can be equally driven to prove themselves. \n3️⃣ You must be crystal clear on why you want success—when your “why” is strong, you’ll push harder and make every year truly count.\n\nQuote of the day: When desire is strong enough, excuses disappear and the next level of success becomes non-negotiable.\n\n#SuccessMindset #PersonalGrowth #SelfImprovement #Motivation", "transcript": "Kamu mahu berjaya dengan berlainan? Dan apabila hal yang sangat susah, ia bukan talent yang membuat kamu bergerak, ia adalah kemampuan. Kamu tidak perlu jawab saya ini, kamu perlu jawab diri. Kamu betul-betul mahu berjaya dengan kemampuan? Kemampuan bermula dengan kemampuan. Kamu perlu mempunyai kemampuan, yang adalah perkara yang pertama. Kenapa kamu berada di pejabat? Kenapa kamu perlu melakukannya? Kenapa kamu mahu menerima kemampuan? Kerana kemampuan boleh dilatih dan belajar. Kita ada banyak kemampuan. Saya tidak fikir kamu tidak lebih berlainan. Kamu mahu berpengaruh? Kamu betul-betul mahu berjaya, kamu mahu berjaya untuk berjaya. Jadi ini sangat penting. Kerana kamu tidak boleh memasak sebuah kawasan. Jika kamu tidak lapar, kamu tidak berat. Sebenarnya, kawasan tidak akan mencari air. Ini adalah perkara yang sama. Jika kamu tidak lapar, kamu mungkin tidak mahu bekerja dengan susah. Seperti orang yang sangat mahu berjaya untuk melakukan dengan baik dalam hidup. Kemudian banyak orang selalu berkata, kamu datang dari kemampuan yang lebih kurang. Sebab itulah kamu lebih lapar. Saya akan kembali kembali. Saya rasa saya telah melihat sebuah kemampuan yang sangat lapar, tetapi masih sangat lapar. Mereka mahu berjaya dengan diri, dengan keluarga, dengan kawan mereka, dan mereka juga sangat berat. Jadi itu sangat penting. Jadi pertanyaan untuk kami hari ini adalah bagaimana jika kamu mahu berada di sekeliling kamu? Ini susah. Kamu perlu tahu kenapa kamu berada di sini. Kamu perlu teruskan COVID-19. Itu adalah perkara yang pertama.", "brk": "Hook类型: 痛点直击\n结构: 抛出渴望成功的心态 → 剖析背景与饥饿感的关系 → 强调明确“为什么”的重要性\n为什么火: 直击奋斗者的心理软肋，用“饥饿感”的比喻激发强烈共鸣与行动欲。\n改编角度: 针对recruitment，探讨你有多渴望改变现状，用对成功的饥饿感吸引同频合伙人。", "my": "你 betul-betul 想要找到一份有真正发展空间的事业吗。。\n\n很多人以为做保险需要很高天分，或者觉得没有经验就不能开始。。\n\n其实不是，能不能在这一行走得远，看的不是你以前的背景，而是你肯不肯学。。\n\n第一，要有想突破现状的企图心。。\n不管你之前是上班族还是销售，遇到困难时，真正推着你往前走的不是天分，是你心里想把生活过好的那个念头。。\n有这个念头，遇到不明白的地方才愿意开口问，一步一步跟着团队学习。。\n\n第二，要清楚知道自己为什么要开始。。\n你可以问自己，为什么每天要在办公室待那么久，为什么想要有更大的收入潜力。。\n当你想清楚是为了自己和家人，希望给他们更安稳的生活，你遇到挫折时才不会轻易停下来。。\n\n第三，给自己一个从零开始的机会。。\n很多人会问我，我没有保险经验，真的可以加入吗。。\n可以的。。我们有 training，会一步一步 guide 着你，小白也可以上手，不需要担心。。\n\n以前很多人觉得，做保险好像很难，每天不知道要找谁，也不知道能不能赚到理想的收入。。\n后来真正开始尝试，跟着团队一步一步做，才发现原来时间可以自己安排，收入也没有上限，一切都取决于你想赚多少。。\n\n如果你也想找一个可以长期发展的事业，给自己的未来多一个选择。。\n可以私信我了解更多详情，我们私底下聊聊看适不适合。", "tags": "SuccessMindset, PersonalGrowth, SelfImprovement, Motivation", "bait": false, "type": "Video", "likes": 162, "comments": 4, "er": 1.67, "followers": 9929, "date": "2026-10-29", "url": "https://www.instagram.com/p/DfE27V6AsaR/", "video": true, "ratio": 0, "score": 1.75, "status": "未处理", "x": 0.5}, {"id": "DegzsL3lZcQ", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "careyang", "caption": "Hitting your target is just the beginning—once you prove it’s possible, you unlock the power to dream even bigger.\n\n3 Key Takeaway!\n1️⃣ Celebrate your wins, but use them as fuel to push your boundaries and grow your confidence. \n2️⃣ Build a strong base by consistently prospecting, setting clear timelines, and growing your client list year by year. \n3️⃣ Break big goals into weekly targets, structure your time, and reverse-engineer your numbers so you always know what actions to take.\n\nQuote of the day: Once you realise your goals are possible, your only limit becomes how far you’re willing to go.\n\n#GrowthMindset #SuccessHabits #ClientBuilding #GoalSetting", "transcript": "Di Hita, kerana target kamu adalah 100,000, ingat, pada awal bulan kita di sana, dan dia kata, target bulan saya adalah 100. Jadi, bagaimana anda rasa apabila anda hampir target 100,000? Oh, kisah pukul! Tapi anda perlu belajar bagaimana untuk memahami percayaan kamu. Jadi bagaimana anda rasa? Boleh dibuat. Jadi, ini adalah perlukan perlukan. Apabila anda telah dibuat, anda tahu ia mungkin. Dan itu adalah apabila percayaan anda bergerak. Itu adalah apabila anda akan pergi untuk perlukan yang lebih besar. Jadi, bagaimana untuk mendapatkan pembaharan? Anda perlu memperlukan lebih banyak, anda perlu membuang lebih banyak. Anda tahu ia susah, anda tahu ia bergaya, tetapi anda tahu, jika saya tidak membuatnya, saya akan selalu menjadi bergaya. Anda perlu membuatkan keadaan, yang adalah untuk membangunkan perlukan yang sangat cepat. Anda perlu membuatkan masa. 200 kliar. 300 kliar. Kemudian itu adalah pembaharan anda. Paling kurang saya ada beberapa orang. Tapi jika anda ada di sini seorang tahun, anda hanya ada 10 kliar. Sebenarnya, anda perlu terus memperlukan. Tapi kalau saya ada 1,000 kliar, anda rasa saya ada masalah untuk tidak membuat pelanggan? Saya tidak. Saya akan sangat sibuk dengan bersedia kerana saya ada 1,000 orang untuk membuat. Jika saya ada 1,000 orang untuk membuat, saya akan membuat tidak membuat pembaharan. Jadi, sebuah kliar yang sangat baik, sebuah kliar yang sangat baik dan sangat berkembang, anda perlu mempunyai 100 kliar tahun. Kliar yang baru di dalam KKD. Jadi, melihatkan kepada pelanggan, bagaimana pelanggan yang anda mempunyai? Itu adalah sebuah kliar yang baik. Makan. Saya harap selepas hari ini, anda sangat jelas apa yang anda perlu lakukan. Anda perlu memperlukan di bilik anda. Saya perlu membuat lebih banyak masa. Bagaimana saya memorganiskan masa saya? Struktur. Setiap hari, setiap minggu, saya perlu mempunyai harga produs. Lihatkan harga anda. Jika saya perlu membuat 100,000 bulan, saya perlu mempunyai 30,000 bulan. Bagaimana saya mempunyai 30,000 bulan? Berjaya. Bagaimana saya mempunyai 30,000 bulan? Apabila anda mempunyai harga anda, anda sangat jelas apa yang saya perlu lakukan. Saya tidak mempunyai nombor yang saya perlu mencari. Saya akan mempunyai nombor yang di dalam.", "brk": "Hook类型: 身份共鸣\n结构: 目标设定 → 拆解行动 → 突破极限\n为什么火: 用具体数字和逆向推导打破销售迷茫，激发执行力\n改编角度: 聚焦Recruitment，分享如何通过拆解每月招募目标，吸引新人加入团队", "my": "你没有保险经验真的可以加入吗？\n\n很多人以为做保险一定要有底子或者很会销售。\n\n其实不是。\n\n保险就像创业。\n\n第一个方法，从基础开始学起。\n\n我们有 training 会一步一步 guide 着你。\n\n小白也可以上手不需要担心。\n\n第二个方法，建立稳定的节奏。\n\n每一天每一周去接触不同的人。\n\n把你的目标拆成每一个小步骤。\n\n你就会知道自己每天要做什么。\n\n第三个方法，把眼光放远。\n\n保险就像创业是没有上限的。\n\n取决于你想赚多少。\n\n以前很多人觉得做保险很难发展空间有限。\n\n有了系统化的培训以后，你会发现原来只要愿意付出，就可以在这个行业建立长期的事业。\n\n如果你想了解更多，可以私信我。", "tags": "GrowthMindset, SuccessHabits, ClientBuilding, GoalSetting", "bait": false, "type": "Video", "likes": 144, "comments": 0, "er": 1.45, "followers": 9929, "date": "2026-10-15", "url": "https://www.instagram.com/p/DegzsL3lZcQ/", "video": true, "ratio": 0, "score": 1.45, "status": "未处理", "x": 0.4}, {"id": "De8fq14icpY", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "shweenyee", "caption": "A little piece of Korea’s village 🏠\n\n#bukchonhanokvillage #bukchon #seoul #selenangxtravel #koreatravel", "transcript": "", "brk": "Hook类型: 身份共鸣\n结构: 场景展示 → 异国风情 → 情感留白\n为什么火: 利用高颜值的异国旅行视觉唤起目标受众对美好生活的向往。\n改编角度: 结合医疗卡或孕期保险，展示“带宝宝看世界的前提是做好充足保障”。", "my": "刚开始建立家庭的时候，夫妻俩最常吵架的问题其实是保单应该怎么买。\n\n很多人以为，只要两个人各自随便买一份人寿保险，家庭的保障就足够了。\n\n其实不是这样的，如果两个人的保障没有互相配合，发生事情的时候家庭经济还是会受到影响。\n\n这里有三个方法，帮你规划两个人的保障。\n\n第一点，先了解彼此目前已经有的保障。\n\n你可以看看对方有没有 existing policy，把所有的保单放在一起看。\n\n这样才知道两个人到底还缺多少保障，避免买到重复的东西。\n\n第二点，根据两个人的收入比例来分担。\n\n你可以计算一下家里谁承担比较大的经济责任。\n\n让收入比较多的人承担比较重的保障，这样才不会造成一个人的负担太重。\n\n第三点，把两个人的保单做成一个完整的规划。\n\n不要分开买不同的保险公司，尽量让保障可以互相配合。\n\n这样不管发生什么意外或者重大疾病，另外一个人和家庭才会有完整的保护。\n\n最近我遇到一对大约三十多岁的年轻夫妻，丈夫是上班族，太太也有自己的工作。\n\n他们刚开始建立家庭的时候，最关心的问题就是如果其中一个人发生事情，剩下的那个人和家庭怎么办。\n\n通过互相配合的保障规划，他们终于不用再担心万一出事家里会撑不下去。\n\n以前他们不知道怎么开始买保险，总觉得很乱又不知道谁该负责。\n\n用对方法规划之后，不仅两个人的保障互相配合，家庭也得到了更完整的保护。\n\n如果你也是第一次了解保险，不知道应该怎么开始。\n\n可以私信我了解一下，帮你做个简单的保障规划。", "tags": "bukchonhanokvillage, bukchon, seoul, selenangxtravel, koreatravel", "bait": false, "type": "Carousel", "likes": -1, "comments": 6, "er": 0.05, "followers": 11094, "date": "2026-10-26", "url": "https://www.instagram.com/p/De8fq14icpY/", "video": false, "ratio": 0, "score": 0.16, "status": "未处理", "x": 2.0}, {"id": "Deay_vkCk4d", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "shweenyee", "caption": "Wandering through the streets, collecting beautiful memories in Old Town 🥂📸\n\n#Madrid #Madridfourseason #selenangxtravel #Aiatrips #Madridoldtown", "transcript": "", "brk": "Hook类型: 身份共鸣\n结构: 旅游打卡 → 休闲日常 → 隐藏行业福利展示\n为什么火: 通过高品质生活方式激发受众对保险代理人职业自由度的向往\n改编角度: 结合recruitment，展示做保险代理人如何实现边旅游边工作的自由生活方式", "my": "刚开始建立家庭的时候，两夫妻最常想到的就是未来该怎么办。。\n很多人以为，买保险只要一个人随便买一份，或者等宝宝生出来以后才来处理就好。。\n其实不是的，因为只有在怀着孕的时候买 pre natal plan 才有保 congenital conditions 先天性疾病，所以不要错失这个机会，只有在 13-35 weeks 孕期才可以申请。。\n我们可以用这三个方法，来帮家庭做好完整的保障。。\n第一点，先了解彼此目前有的保障。可以看一下你是第一次了解保险，还是你目前已经有 existing policy 了，这样才知道两夫妻的保障要怎么互相配合。。\n第二点，把预算先拿出来讨论。可以知道你的 budget 吗，根据你的 budget 去调整的哦。。\n第三点，把遗嘱规划也一起做好。可以让整个家庭有更完整的保护，不用担心未来如果发生事情的时候，另一方和家庭的经济会受到影响。。\n最近刚成交了一对大约 30 多岁的年轻夫妻，丈夫是上班族，太太也有自己的工作，两个人都有稳定收入刚开始建立家庭。。\n以前他们很担心，如果其中一个人发生事情，剩下的那个人和家庭怎么办，也不知道两个人应该买多少保险。。\n找我沟通以后，他们把两个人的保障互相配合，让家庭有了更完整的保护，也不用再为这些不确定因素烦恼。。\n如果你们也想了解夫妻怎样配合买保险，可以直接私信我了解看看。。", "tags": "Madrid, Madridfourseason, selenangxtravel, Aiatrips, Madridoldtown", "bait": false, "type": "Carousel", "likes": -1, "comments": 3, "er": 0.02, "followers": 11094, "date": "2026-10-13", "url": "https://www.instagram.com/p/Deay_vkCk4d/", "video": false, "ratio": 0, "score": 0.08, "status": "未处理", "x": 1.0}, {"id": "DfADqkkpQjl", "tracker": "ANDREA POON INSURANCE 竞对", "competitor": "shweenyee", "caption": "We are looking for passionate people to join us in this industry as an life planner and become the future leader !\n\nLet’s have a coffee session together to explore this career opportunity 💕\n\n#Aialeaders #AIACAREER #insurancecareer #AIALIFEPLANNER #financiallifeplanner", "transcript": "All time. All, all, all, all, all, all, all, all, all, all, all. Try to love them all.", "brk": "Hook类型: 身份共鸣\n结构: 招募邀约 → 喝咖啡面谈 → 共同成长\n为什么火: 用轻松真诚的语气打破传统严肃的保险招聘形象\n改编角度: 针对recruitment业务，邀请宝妈或斜杠青年喝咖啡聊聊如何兼职发展保险事业", "my": "很多30多岁在职场卡住的人。。每天都觉得发展空间很有限。。\n\n觉得转行很难。。以为一定要有丰富的保险经验。。才可以加入这个行业。。\n\n其实不是的。。只要愿意学习。。小白也可以上手。。\n\n第一点。。不用担心没有经验。。我们有training。。会一步一步guide着你。。\n\n第二点。。收入是没有上限的。。就像创业一样。。完全取决于你想赚多少。。\n\n第三点。。时间安排很自由。。你可以根据自己的节奏去调整。。\n\n以前很多人以为做保险就是兼职赚外快。。卡在不知道自己能不能做到。。\n\n现在很多23到35岁的新人。。找到对的团队和发展空间。。一步一步成长为未来的团队领袖。。\n\n如果你也想寻找新的事业发展机会。。\n\n点击私信我。。我们约个时间喝咖啡聊聊。。", "tags": "Aialeaders, AIACAREER, insurancecareer, AIALIFEPLANNER, financiallifeplanner", "bait": false, "type": "Video", "likes": -1, "comments": 3, "er": 0.02, "followers": 11094, "date": "2026-10-27", "url": "https://www.instagram.com/p/DfADqkkpQjl/", "video": true, "ratio": 0, "score": 0.08, "status": "未处理", "x": 1.0}]</script>
+<script>
+const DATA = JSON.parse(document.getElementById('data').textContent);
+const SUPA = 'https://ftojcipligdxzfbkyfbb.supabase.co';
+const ANON = 'sb_publishable_DgrrTvdpWB3C4xuBHqlFig_gGMLHDxH';
+const STATUSES = ["未处理", "拍摄中", "已处理", "跳过"];
+document.getElementById('updated').textContent = '更新于 2026-11-13 11:55 (GMT+8)';
+const PAGE = 48;
+let shown = PAGE;
+let videoOnly = false;
+let curTab = '全部';
+
+const $ = id => document.getElementById(id);
+const fmt = n => n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(1)+'K' : String(n);
+const getKey = () => ANON;  // anon key is baked in — safe, can only change status
+const I = n => '<svg class="ic"><use href="#i-' + n + '"/></svg>';
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const byRec = {}; DATA.forEach(d => byRec[d.id] = d);
+const TRENDS = [["financialadvisor", 2], ["careyanggroup", 2]];
+DATA.forEach(d => {
+  d.days = d.date ? Math.max(0, Math.floor((Date.now() - new Date(d.date + 'T00:00:00')) / 864e5)) : null;
+  d.horse = d.followers > 0 && d.followers < 50000 && ((d.x || 0) >= 2 || d.score >= 10);
+});
+const PRESETS = [
+  { k: 'px', icon: 'trend', label: '真爆款 ×2+', f: d => (d.x || 0) >= 2 },
+  { k: 'pn', icon: 'star', label: '近7天', f: d => d.days !== null && d.days <= 7 },
+  { k: 'ph', icon: 'zap', label: '黑马', f: d => d.horse },
+  { k: 'pb', icon: 'magnet', label: '引流帖', f: d => d.bait },
+];
+const presetOn = {};
+
+function toast(msg, ok) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  t.style.borderColor = ok ? 'var(--green)' : 'var(--red)';
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+// filters
+const comps = [...new Set(DATA.map(d => d.competitor))].sort();
+comps.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = '@'+c; $('fComp').appendChild(o); });
+[...new Set(DATA.map(d => d.tracker))].forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; $('fTracker').appendChild(o); });
+
+function matchQ(d) {
+  const q = ($('fSearch').value || '').trim().toLowerCase();
+  return !q || (d.caption + ' ' + (d.tags || '') + ' ' + (d.transcript || '') + ' ' + (d.brk || '') + ' ' + d.competitor).toLowerCase().includes(q);
+}
+
+function basePool() {
+  const t = $('fTracker').value, c = $('fComp').value;
+  return DATA.filter(d => (!t || d.tracker === t) && (!c || d.competitor === c) && (!videoOnly || d.video)
+    && matchQ(d) && PRESETS.every(p => !presetOn[p.k] || p.f(d)));
+}
+
+function filtered() {
+  const s = $('fSort').value;
+  let arr = basePool().filter(d => curTab === '全部' || d.status === curTab);
+  const key = { score:'score', er:'er', comments:'comments', likes:'likes', x:'x' }[s];
+  if (s === 'date') arr.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+  else arr.sort((a,b) => (b[key]||0) - (a[key]||0));
+  return arr;
+}
+
+let dragRec = null;
+
+function renderTabs() {
+  const pool = basePool();
+  const counts = { '全部': pool.length };
+  STATUSES.forEach(s => counts[s] = pool.filter(d => d.status === s).length);
+  $('tabs').innerHTML = '';
+  ['全部', ...STATUSES].forEach(name => {
+    const el = document.createElement('div');
+    el.className = 'tab' + (curTab === name ? ' on' : '') + (name !== '全部' ? ' droppable' : '');
+    el.innerHTML = esc(name) + ' <span class="cnt">' + counts[name] + '</span>';
+    el.onclick = () => { curTab = name; shown = PAGE; render(); };
+    if (name !== '全部') {
+      el.ondragover = e => { if (dragRec) { e.preventDefault(); el.classList.add('over'); } };
+      el.ondragleave = () => el.classList.remove('over');
+      el.ondrop = e => {
+        e.preventDefault(); el.classList.remove('over');
+        const d = byRec[dragRec]; dragRec = null;
+        if (d && d.status !== name) setStatus(d, name);
+      };
+    }
+    $('tabs').appendChild(el);
+  });
+}
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target, pid = el.dataset.pid;
+      if (!el.querySelector('iframe')) {
+        const f = document.createElement('iframe');
+        f.src = 'https://www.instagram.com/p/' + pid + '/embed/';
+        f.loading = 'lazy'; f.allow = 'autoplay; encrypted-media';
+        el.appendChild(f);
+      }
+      io.unobserve(el);
+    }
+  });
+}, { rootMargin: '400px' });
+
+async function setStatus(d, val) {
+  try {
+    const r = await fetch(SUPA + '/rest/v1/posts?post_id=eq.' + encodeURIComponent(d.id), {
+      method: 'PATCH',
+      headers: { 'apikey': ANON, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ status: val })
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    d.status = val;
+    cacheStatus(d.id, val);
+    toast('✓ @' + d.competitor + ' 已移到「' + val + '」', true);
+  } catch (e) {
+    toast('更新失败: ' + e.message + (String(e.message).includes('401') || String(e.message).includes('403') ? ' — 密钥无效?' : ''), false);
+  }
+  render();
+}
+
+function card(d, idx) {
+  const el = document.createElement('div');
+  el.className = 'card' + ((d.x || 0) >= 2 ? ' outlier' : '');
+  el.style.animationDelay = Math.min(idx % PAGE, 14) * 30 + 'ms';
+  el.draggable = true;
+  el.ondragstart = e => {
+    dragRec = d.id;
+    e.dataTransfer.effectAllowed = 'move';
+    el.classList.add('lifting');
+    document.body.classList.add('dragging');
+  };
+  el.ondragend = () => {
+    el.classList.remove('lifting');
+    document.body.classList.remove('dragging');
+    dragRec = null;
+  };
+  const typeIcon = d.video ? 'video' : (d.type === 'Carousel' ? 'layers' : 'image');
+  const days = d.days, horse = d.horse;
+  const ago = days === null ? '' : (days === 0 ? '今天' : days + '天前');
+  const lines = (d.caption || '').split('\n').map(l => l.trim()).filter(Boolean);
+  const hook = lines[0] || '';
+  const tr = (d.transcript && d.transcript !== '(转录失败)' && d.transcript !== '(无口播内容)') ? d.transcript : '';
+  el.innerHTML = `
+    <div class="embed" data-pid="${d.id}"><div class="ph"><svg class="ic"><use href="#i-${typeIcon}"/></svg></div></div>
+    <div class="meta">
+      <div class="row1">
+        <span class="handle" title="拖到上方 tab 即可归类">${I('grip')}</span>
+        <a class="who" href="https://www.instagram.com/${d.competitor}/" target="_blank">@${d.competitor}</a>
+        <span class="badge">${d.type || '-'}</span>
+        ${days !== null && days <= 7 ? '<span class="badge bnew">' + I('star') + '新帖</span>' : ''}
+        ${horse ? '<span class="badge bhorse">' + I('zap') + '黑马</span>' : ''}
+        ${d.bait ? '<span class="badge bbait" title="「留言XX」引流打法 — 评论被引流放大,漏斗设计值得学">' + I('magnet') + '引流</span>' : ''}
+        <span class="date" title="${d.date || ''}">${ago}</span>
+      </div>
+      <div class="nums">
+        <span class="num hot" title="Viral Score">${I('flame')}<b>${d.score}</b></span>
+        ${(d.x || 0) >= 2 ? '<span class="num x" title="是自家平均热度的多少倍">' + I('trend') + '<b>×' + d.x + '</b></span>' : ''}
+        <span class="num er" title="Engagement Rate">${I('pct')}<b>${d.er}%</b></span>
+        <span class="num" title="Likes">${I('heart')}<b>${d.likes > 0 ? fmt(d.likes) : '隐藏'}</b></span>
+        <span class="num" title="Comments">${I('msg')}<b>${fmt(d.comments)}</b></span>
+        <span class="num" title="Followers">${I('users')}<b>${fmt(d.followers)}</b></span>
+      </div>
+      <div class="cap" onclick="this.classList.toggle('open')"></div>
+      ${d.brk ? '<div class="ai" onclick="this.classList.toggle(&quot;open&quot;)"></div>' : ''}
+      ${d.my ? '<div class="mine" onclick="this.classList.toggle(&quot;open&quot;)"></div>' : ''}
+      <div class="srow"><label>状态</label><select class="status btn s${d.status}"></select>
+        <button class="abtn copy" title="复制完整文案">${I('copy')}文案</button>
+        ${tr ? '<button class="abtn mic" title="复制视频口播逐字稿">' + I('mic') + '口播</button>' : ''}
+        ${d.my ? '<button class="abtn minec" title="复制我的改写口播稿(可直接拍)">' + I('mic') + '我的稿</button>' : ''}
+        <button class="abtn brief" title="复制拍摄 Brief(数据+Hook+AI拆解+我的稿+口播稿+文案)">${I('clip')}Brief</button>
+        <a class="abtn" href="${d.url}" target="_blank" title="打开 Instagram 原帖">${I('ext')}</a></div>
+    </div>`;
+  const capEl = el.querySelector('.cap');
+  const restTxt = lines.slice(1).join('\n');
+  capEl.innerHTML = hook ? '<b>' + esc(hook) + '</b>' + (restTxt ? '<br>' + esc(restTxt).replace(/\n/g, '<br>') : '') : '';
+  const aiEl = el.querySelector('.ai');
+  if (aiEl) aiEl.innerHTML = '<b>💡 AI 拆解</b><br>' + esc(d.brk).split(String.fromCharCode(10)).join('<br>');
+  const myEl = el.querySelector('.mine');
+  if (myEl) myEl.innerHTML = '<b>🎬 我的版本(可直接拍)</b><br>' + esc(d.my).split(String.fromCharCode(10)).join('<br>');
+  const sel = el.querySelector('.status');
+  STATUSES.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
+  sel.value = d.status;
+  sel.onchange = () => setStatus(d, sel.value);
+  el.querySelector('.copy').onclick = () =>
+    navigator.clipboard.writeText(d.caption || '').then(() => toast('✓ 文案已复制', true));
+  const micBtn = el.querySelector('.mic');
+  if (micBtn) micBtn.onclick = () =>
+    navigator.clipboard.writeText(tr).then(() => toast('✓ 口播稿已复制', true));
+  const mineBtn = el.querySelector('.minec');
+  if (mineBtn) mineBtn.onclick = () =>
+    navigator.clipboard.writeText(d.my).then(() => toast('✓ 我的改写稿已复制', true));
+  el.querySelector('.brief').onclick = () => {
+    const NL = String.fromCharCode(10);
+    const parts = ['🎬 爆款参考 @' + d.competitor + ((d.x || 0) >= 2 ? '(自家平均 ×' + d.x + ')' : ''),
+      '📊 🔥' + d.score + ' | ER ' + d.er + '% | ❤️ ' + (d.likes > 0 ? fmt(d.likes) : '隐藏') +
+      ' | 💬 ' + fmt(d.comments) + ' | 👥 ' + fmt(d.followers) + (ago ? ' | ' + ago : ''),
+      '🔗 ' + d.url, '✍️ Hook: ' + hook];
+    if (d.brk) parts.push('——— AI 拆解 ———', d.brk);
+    if (d.my) parts.push('——— 我的版本(可直接拍)———', d.my);
+    if (tr) parts.push('——— 竞对原口播稿 ———', tr);
+    parts.push('——— 完整文案 ———', d.caption || '');
+    navigator.clipboard.writeText(parts.join(NL)).then(() => toast('✓ Brief 已复制,可直接发给拍摄/剪辑', true));
+  };
+  io.observe(el.querySelector('.embed'));
+  return el;
+}
+
+function render() {
+  renderTabs();
+  const arr = filtered();
+  const grid = $('grid'); grid.innerHTML = '';
+  arr.slice(0, shown).forEach((d, i) => grid.appendChild(card(d, i)));
+  $('empty').style.display = arr.length ? 'none' : '';
+  $('moreWrap').style.display = arr.length > shown ? '' : 'none';
+}
+
+
+function applyStatusCache() {
+  try {
+    const c = JSON.parse(localStorage.getItem('st_cache') || '{}');
+    Object.keys(c).forEach(rid => { const d = byRec[rid]; if (d) d.status = c[rid]; });
+  } catch (e) {}
+}
+
+function cacheStatus(rid, val) {
+  try {
+    const c = JSON.parse(localStorage.getItem('st_cache') || '{}');
+    c[rid] = val; localStorage.setItem('st_cache', JSON.stringify(c));
+  } catch (e) {}
+}
+
+// live status refresh (so weekly-baked page shows current statuses)
+async function refreshStatuses() {
+  applyStatusCache(); render();  // last-known statuses first
+  if (Date.now() - (+localStorage.getItem('st_ts') || 0) < 600000) return;  // 10-min throttle
+  localStorage.setItem('st_ts', String(Date.now()));
+  const fresh = {};
+  try {
+    const r = await fetch(SUPA + '/rest/v1/posts?select=post_id,status', { headers: { 'apikey': ANON } });
+    if (!r.ok) return;
+    (await r.json()).forEach(row => {
+      const d = byRec[row.post_id];
+      if (d) d.status = row.status || '未处理';
+      if (row.status && row.status !== '未处理') fresh[row.post_id] = row.status;
+    });
+    localStorage.setItem('st_cache', JSON.stringify(fresh));
+    render();
+  } catch (e) {}
+}
+
+['fTracker','fComp','fSort'].forEach(id => $(id).onchange = () => { shown = PAGE; render(); });
+$('fSearch').oninput = () => { shown = PAGE; render(); };
+$('fVideo').onclick = () => { videoOnly = !videoOnly; $('fVideo').classList.toggle('on', videoOnly); shown = PAGE; render(); };
+$('moreBtn').onclick = () => { shown += PAGE; render(); };
+
+// preset quick filters
+$('presets').innerHTML = '<span class="lbl">快筛</span>';
+PRESETS.forEach(p => {
+  const c = document.createElement('span'); c.className = 'chip2';
+  c.innerHTML = I(p.icon) + esc(p.label);
+  c.onclick = () => { presetOn[p.k] = !presetOn[p.k]; c.classList.toggle('on', presetOn[p.k]); shown = PAGE; render(); };
+  $('presets').appendChild(c);
+});
+
+// trending hashtags among outlier posts
+if (TRENDS.length) {
+  $('trends').innerHTML = '<span class="lbl">爆款热词</span>';
+  TRENDS.forEach(([tag, n]) => {
+    const c = document.createElement('span'); c.className = 'chip2';
+    c.textContent = '#' + tag + ' ' + n;
+    c.onclick = () => { $('fSearch').value = $('fSearch').value === tag ? '' : tag; shown = PAGE; render(); };
+    $('trends').appendChild(c);
+  });
+} else { $('trends').style.display = 'none'; }
+
+render();
+refreshStatuses();
+</script>
+</body>
+</html>
